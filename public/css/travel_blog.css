@@ -1,0 +1,108 @@
+img.small{
+	width: 100px;
+}
+img.medium{
+	padding: 30px;
+}
+td{
+	vertical-align:middle !important;
+}
+.row{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#search, #auth, #notices{
+	float:right;
+}
+#auth button, #notices button{
+    color: blue;
+}
+h1 {
+    text-align: center;
+}
+.social_login a{
+    margin-top:20px;
+}
+.social_login a img{
+    width:100%;
+}
+
+.dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+img.log_img {
+    max-width: 200px;
+}
+
+#home_vue form {
+    border: 1px solid black;
+    margin: 10px;
+}
+
+#home_vue form .form-group, 
+#home_vue form input, 
+#home_vue form button {
+    margin: 10px;
+} 
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+select#autosuggest::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE and Edge */
+select#autosuggest {
+  -ms-overflow-style: none;
+}
+
+.role_node button {
+    background: none!important;
+    border: none;
+    padding: 0 !important;
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.role_node button:hover {
+    text-decoration: underline;
+}
+
+.role_node label {
+    font-weight: bold;
+    font-size: 20px;
+}
+ div.tree.tree-default {
+    margin-top: 30px;
+}
+
+button#sync_tree {
+    margin: 30px;
+    font-size: 16px;
+}
