@@ -2,7 +2,7 @@
 
 This is an update to: https://github.com/Ruslan-Aliyev/travel_blog (Laravel 5)
 
-The mobile app to this: https://github.com/atabegruslan/Travel-Blog-Android-Flutter
+The mobile app to this: https://github.com/atabegruslan/Flutter_CRUD
 
 # Dummy accounts
 
