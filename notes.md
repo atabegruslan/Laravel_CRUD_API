@@ -1005,6 +1005,12 @@ Use mixins: https://v1.vuejs.org/guide/mixins.html
 Better dependency management
 - https://christoph-rumpel.com/2019/8/4-ways-the-laravel-service-container-helps-us-managing-our-dependencies
 
+
+## Lifecycle
+
+- https://laravel.com/docs/8.x/lifecycle#first-steps
+    - https://laravel.com/docs/4.2/lifecycle#request-lifecycle (Summary subsection)
+    
 ## Architectural Patterns
 
 Laravel best fits the ADR pattern.

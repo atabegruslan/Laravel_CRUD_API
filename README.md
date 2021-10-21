@@ -1,6 +1,6 @@
 # Blog website | Laravel 8
 
-This is an update to: https://github.com/Ruslan-Aliyev/travel_blog (Laravel 5)
+This is an update to: https://github.com/Ruslan-Aliyev/Laravel_CRUD_API (Laravel 5)
 
 The mobile app to this: https://github.com/atabegruslan/Flutter_CRUD
 
@@ -191,7 +191,7 @@ php artisan passport:install
 
 https://laravel.com/docs/8.x/passport#installation
 
-Now you can get access token: POST `.../oauth/token` https://github.com/atabegruslan/travel_blog#get-access-token
+Now you can get access token: POST `.../oauth/token` https://github.com/atabegruslan/Laravel_CRUD_API#get-access-token
 
 `routes/api.php`: 
 ```php
@@ -200,7 +200,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 ```
 
-Now you can get user data: GET `.../api/user` https://github.com/atabegruslan/travel_blog#get-user-data
+Now you can get user data: GET `.../api/user` https://github.com/atabegruslan/Laravel_CRUD_API#get-user-data
 
 `routes/api.php`: 
 ```php
@@ -209,8 +209,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 });
 ```
 
-Now you must do Entry CRUDs with access token https://github.com/atabegruslan/travel_blog#entries
+Now you must do Entry CRUDs with access token https://github.com/atabegruslan/Laravel_CRUD_API#entries
 
 # Further notes:
 
-https://github.com/atabegruslan/travel_blog/blob/master/notes.md
+https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/notes.md
