@@ -2,7 +2,7 @@
 
 This is an update to: https://github.com/Ruslan-Aliyev/Laravel_CRUD_API (Laravel 5)
 
-The mobile app to this: https://github.com/atabegruslan/Flutter_CRUD
+The mobile app to this: https://github.com/atabegruslan/Flutter_CRUD_API
 
 # Dummy accounts
 
