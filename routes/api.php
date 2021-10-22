@@ -15,10 +15,9 @@ use App\Http\Controllers\Api\EntryController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::group(['middleware' => ['auth:api']], function () {
+Route::group(['middleware' => ['auth:api', 'devcors']], function () {
     Route::resource('/entry', EntryController::class);
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
