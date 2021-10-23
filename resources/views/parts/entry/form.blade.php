@@ -1,5 +1,7 @@
 {!! Form::model($entry, ['url' => !is_null($entry) ? "entry/$entry->id" : "entry", 'enctype' => 'multipart/form-data', 'class' => 'form']) !!}
 
+    {{ Form::hidden('user_id', Auth::user()->id) }}
+    
     <div class="form-group">
         <label for="place">Place: </label>
         {{ Form::text('place', !is_null($entry) ? $entry->place : null, ['placeholder' => 'Place', 'class' => 'form-control', 'id' => 'place']) }}

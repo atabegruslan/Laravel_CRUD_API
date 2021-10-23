@@ -13,6 +13,7 @@ class EntryService
         $entry = Entry::create([
             'place'    => $request->input('place'),
             'comments' => $request->input('comments'),
+            'user_id'  => $request->input('user_id'),
             'img_url'  => $imageService->makeImage( $request->file('image') )
         ]);
 

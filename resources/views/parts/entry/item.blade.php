@@ -8,6 +8,10 @@
 
     <tbody>
         <tr>
+            <td><strong>By: </strong></td>
+            <td>{{ $entry->user->name }}</td>
+        </tr>
+        <tr>
             <td><strong>Modified: </strong></td>
             <td>{{ $entry->updated_at }}</td>
         </tr>

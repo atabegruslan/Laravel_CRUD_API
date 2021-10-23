@@ -17,6 +17,7 @@
 	                <th></th>
 	                <th>Place</th>
 	                <th>Review</th>
+	                <th>User</th>
 	                <th>Time</th>
 	            </tr>
 	        </thead>
@@ -31,7 +32,8 @@
 	                    	<b>{{ link_to_route('entry.show', $v->place, [ $v->id ] ) }}</b>
 	                    </td>
 	                    <td>{!! $v->comments !!}</td>
-	                    <td>{!! date('Y-m-d h:i:s', strtotime($v->updated_at) ) !!}</td>
+	                    <td>{!! $v->user->name !!}</td>
+	                    <td>{!! $v->updated_at !!}</td>
 	    	    	</tr>
 	    	    @endforeach
 	        </tbody>

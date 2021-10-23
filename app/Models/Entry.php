@@ -22,6 +22,16 @@ class Entry extends Model
         'img_url'
     ];
 
+    protected function getCreatedAtAttribute($value)
+    {
+        return date('Y-m-d h:i:s', strtotime($value) );
+    }
+
+    protected function getUpdatedAtAttribute($value)
+    {
+        return date('Y-m-d h:i:s', strtotime($value) );
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
