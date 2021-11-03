@@ -308,35 +308,6 @@ Then complete the store method, like in: https://github.com/atabegruslan/Travel-
 - http://devartisans.com/articles/complete-laravel5-socialite-tuorial
 
 
-## Contact form with emailing ability
-
-.env
-```
-MAIL_DRIVER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=***@gmail.com
-MAIL_PASSWORD=*****
-MAIL_ENCRYPTION=tls
-```
-
-Create contact form view, connect it to route then to controller.
-
-Write the controller like this: https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/app/Http/Controllers/Web/EmailController.php
-
-In view, for HTML email template. Here I just show the HTML email that Admin receives:
-```html
-<p style="font-size: 100%;">Dear Administrator, You got new mail from Travel Blog</p>
-
-<p style="font-size: 160%; background-color: #F0F8FF;">
-{{ $body }}
-</p>
-
-<p style="font-size: 100%; background-color: #DCDCDC;">
-    <b>From:</b> {{ $name }} ( <a href="mailto:{{ $email }}">{{ $email }}</a> )<br>
-</p>
-```
-
 ## Custom Carousel on Welcome Page
 
 Selects a sample of content images for display

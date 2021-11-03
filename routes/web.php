@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\EntryController;
+use App\Http\Controllers\Web\MiscController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('/entry', EntryController::class);
+    Route::post('/contact', [MiscController::class, 'contact']);
+    Route::get('/contactform', [MiscController::class, 'contactform'])->name('contactform');;
 });
 
 Auth::routes();
