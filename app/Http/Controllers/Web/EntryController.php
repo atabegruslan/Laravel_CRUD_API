@@ -15,9 +15,18 @@ class EntryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $entries = Entry::orderBy('updated_at', 'DESC')->paginate(env('PAG'));
+        $query = Entry::query();
+
+        if ($request->exists('search'))
+        {
+            $query->where('place', 'LIKE', '%' . $request->input('search') . '%');
+        }
+
+        $entries = $query
+                    ->orderBy('updated_at', 'DESC')
+                    ->paginate(env('PAG'));
 
         return view('entry.index', ['entries' => $entries]);
     }

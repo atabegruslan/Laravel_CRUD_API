@@ -12,19 +12,6 @@ EG: Post with many Comments. It's bad to retrieve the POST from the DB, then ret
 
 - https://github.com/atabegruslan/Others/blob/master/DB/db.md#eager-vs-lazy-load
 
-## Search Box Functionality
-
-routes/web.php:
-```php
-Route::get('/search', 'SearchController@index');
-```
-
-New Controller for Search: `php artisan make:controller SearchController`
-
-Good Tutorials:
-- https://tutorialedge.net/laravel-5-simple-site-search-bar
-- http://anytch.com/laravel-5-simple-get-search/
-
 ## Social Login (Socialite)
 
 ### Register

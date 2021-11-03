@@ -10,6 +10,16 @@
 
 	@include('parts/msg/_success')
 
+	<form action="{{ route('entry.index') }}" method="GET" class="form">
+	    <input type="text" name="search" required class="form-control" />
+	    <button type="submit" class="btn btn-default">Search</button>
+	    <a href="{{ route('entry.index') }}">
+	        <span class="input-group-btn">
+	            <button class="btn btn-default" type="button">Reset</button>
+	        </span>
+	    </a>
+	</form>
+
 	<div class="row">
 	    <table class="table">
 	        <thead>
