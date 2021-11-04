@@ -546,40 +546,6 @@ class XxxHelper
 
 3. `composer dump-autoload`
 
-## Permissions (Spatie library)
-
-1. `composer require spatie/laravel-permission`
-2. Create migration and config files: `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
-    - Or create seperately by:
-        - Migration: `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="migrations"`
-        - Config: `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="config"`
-3. `php artisan migrate`
-4. Make User model use `Spatie\Permission\Traits\HasRoles`
-5. Add `features` to `config/permission.php`: https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/config/permission.php#L130
-6. Run seeder: `php artisan db:seed --class=SyncPermissionTableSeeder` to populate `permissions` table from `config/permission.php`'s `features` part.
-7. Do MVC for User, Role and Permission
-8. Make use of:
-```php
-//A permission can be assigned to a role using 1 of these methods:
-$role->givePermissionTo($permission);
-$permission->assignRole($role);
-//Multiple permissions can be synced to a role using 1 of these methods:
-$role->syncPermissions($permissions);
-$permission->syncRoles($roles);
-//A permission can be removed from a role using 1 of these methods:
-$role->revokePermissionTo($permission);
-$permission->removeRole($role);
-
-$user->assignRole($roles);
-$user->removeRole($role);
-$user->syncRoles($roles);
-```
-9. Check permissions by:
-```php
-auth()->user()->hasRole($roles);
-auth()->user()->can($permission);
-```
-
 ### Tutorials
 
 - https://github.com/spatie/laravel-permission

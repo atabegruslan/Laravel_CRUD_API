@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\EntryController;
+use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\MiscController;
 
 /*
@@ -19,8 +21,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'spatie.permission']], function () {
     Route::resource('/entry', EntryController::class);
+
+    Route::resource('/user', UserController::class);
+    Route::resource('/role', RoleController::class);
+
     Route::post('/contact', [MiscController::class, 'contact']);
     Route::get('/contactform', [MiscController::class, 'contactform'])->name('contactform');;
 });

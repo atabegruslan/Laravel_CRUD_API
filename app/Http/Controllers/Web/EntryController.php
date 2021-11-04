@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Entry;
 use App\Services\EntryService;
 use App\Services\ImageService;
+use Session;
 
 class EntryController extends Controller
 {
+    private $feature = 'entry';
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +31,7 @@ class EntryController extends Controller
                     ->orderBy('updated_at', 'DESC')
                     ->paginate(env('PAG'));
 
-        return view('entry.index', ['entries' => $entries]);
+        return view('entry.index', ['entries' => $entries, 'feature' => $this->feature]);
     }
 
     /**
@@ -38,7 +41,7 @@ class EntryController extends Controller
      */
     public function create()
     {
-        return view('entry.create', ['entry' => null]);
+        return view('entry.create', ['entry' => null, 'feature' => $this->feature]);
     }
 
     /**
@@ -51,7 +54,7 @@ class EntryController extends Controller
     {
         $entryService->create($request);
 
-        \Session::flash('success', 'Entry Created');
+        Session::flash('success', 'Entry Created');
 
         return redirect('entry');
     }
@@ -66,7 +69,7 @@ class EntryController extends Controller
     {
         $entry = Entry::findOrFail($id);
 
-        return view('entry.show', ['entry' => $entry]);
+        return view('entry.show', ['entry' => $entry, 'feature' => $this->feature]);
     }
 
     /**
@@ -79,7 +82,7 @@ class EntryController extends Controller
     {
         $entry = Entry::findOrFail($id);
 
-        return view('entry.edit', ['entry' => $entry]);
+        return view('entry.edit', ['entry' => $entry, 'feature' => $this->feature]);
     }
 
     /**
@@ -93,7 +96,7 @@ class EntryController extends Controller
     {
         $entryService->update($request, $id);
         
-        \Session::flash('success', 'Entry Updated');
+        Session::flash('success', 'Entry Updated');
 
         return redirect('entry');
     }
@@ -112,7 +115,7 @@ class EntryController extends Controller
 
         $entry->delete();
 
-        \Session::flash('success', 'Entry Deleted');
+        Session::flash('success', 'Entry Deleted');
 
         return redirect('entry');
     }
