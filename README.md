@@ -246,6 +246,52 @@ auth()->user()->hasRole($roles);
 auth()->user()->can($permission);
 ```
 
+## Notifications
+
+- https://developers.google.com/cloud-messaging
+- https://laravel.com/docs/8.x/notifications
+
+### Default mail notification:
+
+https://www.youtube.com/watch?v=WshDno7igKA
+
+1. `php artisan make:notification NewEntry`
+2. User model use `Illuminate\Notifications\Notifiable`
+3. Notify user in controller: `$user->notify(new NewEntry);` or `\Notification::send($users, new NewEntry);`
+4. Inside the notification class
+
+```php
+public function via($notifiable)
+{
+    return ['mail'];
+}
+```
+
+5. Do your email message.
+
+### Default database notification:
+
+https://www.youtube.com/watch?v=Tkq0H-McErE
+
+1. `php artisan notifications:table`
+2. `php artisan migrate`
+3. Run `php artisan make:notification NewEntry` if you haven't already.
+4. Inside the notification class
+
+```php
+public function via($notifiable)
+{
+    return ['mail', 'database'];
+}
+```
+
+Note: If the mail method doesn't exist, it will default to the `toArray` method.
+
+5. But here we create a `toDatabase` method, which corresponds to `return [..., 'database']`. It should have the same form as the `toArray` method. Now the order is: `toMail` & `toDatabase`, then `toArray`.
+6. Notify user in controller.
+7. Create a new entry. Notification entries (one DB entry for each notified user) should appear in the `notifications` DB table. If it works, we then create the interface to show these notifications.
+8. When displaying notifications, the key line of code to use is: `auth()->user()->unreadNotifications`.
+
 # Further notes:
 
 https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/notes.md

@@ -7,6 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <meta name="base_url" content="{{ url('/') }}">
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -85,5 +87,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.js"></script>
+    
+    <script>
+        const baseUrl = $("meta[name=base_url]").attr('content');
+    </script>
+    
+    <script src="{{ url('/') }}/js/notification.js?v={{ rand() }}"></script>
 </body>
 </html>

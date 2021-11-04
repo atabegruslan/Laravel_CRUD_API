@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\EntryController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\MiscController;
+use App\Http\Controllers\Web\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,11 @@ Route::group(['middleware' => ['auth', 'spatie.permission']], function () {
     Route::resource('/role', RoleController::class);
 
     Route::post('/contact', [MiscController::class, 'contact']);
-    Route::get('/contactform', [MiscController::class, 'contactform'])->name('contactform');;
+    Route::get('/contactform', [MiscController::class, 'contactform'])->name('contactform');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/markAsRead', [NotificationController::class, 'markAsRead']);

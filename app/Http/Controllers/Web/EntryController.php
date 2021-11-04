@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Entry;
+use App\Models\User;
 use App\Services\EntryService;
 use App\Services\ImageService;
 use Session;
+use App\Notifications\NewEntry;
+use Notification;
 
 class EntryController extends Controller
 {
@@ -52,7 +55,15 @@ class EntryController extends Controller
      */
     public function store(Request $request, EntryService $entryService)
     {
-        $entryService->create($request);
+        $entry = $entryService->create($request);
+
+        Notification::send(
+            User::all(), 
+            new NewEntry([
+                'entry_url' => url("/$this->feature/" . $entry->id), 
+                'name'      => $entry->place,
+            ])
+        );
 
         Session::flash('success', 'Entry Created');
 
