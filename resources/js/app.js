@@ -24,6 +24,7 @@ axios.defaults.headers.common['Authorization'] = 'Bearer ' + document.head.query
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('regions', require('./components/region/Tree.vue').default);
+Vue.component('comments', require('./components/entry/Comments.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

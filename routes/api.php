@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\EntryController;
 use App\Http\Controllers\Api\RegionController;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,10 @@ Route::group(['as' => 'api.', 'middleware' => ['auth:api', 'devcors']], function
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    Route::get('user-autosuggest/{name}', [UserController::class, 'autosuggest'])->name('user_autosuggest');
 
     Route::resource('/region', RegionController::class);
     Route::post('/region-rearrange', [RegionController::class, 'rearrange'])->name('region_rearrange');
+
+    Route::resource('/comment', CommentController::class);
 });

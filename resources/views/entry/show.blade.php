@@ -20,6 +20,8 @@
 	        <img src="{{ $entry->img_url }}" class="img-responsive medium" alt="{{ $entry->place }}">
 	    </div>
 
+        @include('parts/_entry_comments')
+
 	</div>
 
 @endsection
