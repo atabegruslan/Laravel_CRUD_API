@@ -19,5 +19,14 @@
             <td><strong>Review: </strong></td>
             <td>{{ $entry->comments }}</td>
         </tr>
+
+        <tr>
+            <td><strong>Regions: </strong></td>
+            <td>
+                @foreach($entry->regions as $region)
+                    <p>{{ $region->name }}</p>
+                @endforeach
+            </td>
+        </tr>
     </tbody>
 </table>

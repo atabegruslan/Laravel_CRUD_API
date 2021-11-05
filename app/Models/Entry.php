@@ -36,4 +36,14 @@ class Entry extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function regions()
+    { // https://laravel.com/api/5.6/Illuminate/Database/Eloquent/Concerns/HasRelationships.html
+        return $this->belongsToMany(
+            Region::class,
+            'entry_region',
+            'place_id',
+            'region_id'
+        );
+    }
 }

@@ -292,6 +292,81 @@ Note: If the mail method doesn't exist, it will default to the `toArray` method.
 7. Create a new entry. Notification entries (one DB entry for each notified user) should appear in the `notifications` DB table. If it works, we then create the interface to show these notifications.
 8. When displaying notifications, the key line of code to use is: `auth()->user()->unreadNotifications`.
 
+## Ziggy Routes
+
+https://github.com/tightenco/ziggy
+
+## Region feature
+
+So that a place-entry can belong to a region.
+
+Need to create a many-to-many relationship between place and region.
+
+### Theory of many to many relationships in Laravel
+
+Use pivot tables. `Illuminate\Database\Eloquent\Relations\Concerns\InteractsWithPivotTable::sync()` is especially useful: https://laraveldaily.com/pivot-tables-and-many-to-many-relationships/
+
+![](/Illustrations/pivot-sync.png)
+
+### Steps
+
+https://appdividend.com/2018/05/17/laravel-many-to-many-relationship-example
+
+1. `php artisan make:model Region`
+
+2. `php artisan make:migration create_regions_table`
+
+3. `php artisan make:migration create_region_entry_table --create=region_entry`
+
+4. `php artisan migrate`
+
+5. Complete region model and edit entry model.
+
+6. Edit entry controller's store and update functions.
+
+7. Make region route and controller (`php artisan make:controller Web/RegionController --resource`) and views.
+
+8. Make region display in entry list and item views.
+
+### Make regions hierarchical
+
+So that, eg: East Asia is a subset of Asia
+
+1. `php artisan make:migration create_region_tree_table --create=region_tree`
+
+2. `php artisan migrate`
+
+3. `php artisan make:model RegionTree`
+
+4. Make manipulatable tree in view. There are a few options for making draggable and droppable hierarchical tree in frontend:
+    - jQuery UI (But no provision for trees)
+        - https://jqueryui.com/droppable/
+            - https://jsfiddle.net/atabegaslan/j7web6yp/
+    - JSTree (Have provision for trees. Draggable and Droppable provided for in its DnD plugin)
+        - https://www.jstree.com/
+            - https://jsfiddle.net/atabegaslan/my9q02sf/
+    - Recursion (Needed because the nested data can be infinitely deep)
+        - https://vuejsdevelopers.com/2017/10/23/vue-js-tree-menu-recursive-components/ 
+            - https://jsfiddle.net/atabegaslan/mhf58zg9/
+    - JSTree for Vue (Fortunately the ability of recursion for infinitely-deep nested-data is already here)
+        - https://www.npmjs.com/package/vue-jstree
+        - https://www.vuescript.com/tag/tree-view/
+            - https://www.vuescript.com/interactive-tree-view-vue-js-2-vjstree/
+                - https://zdy1988.github.io/vue-jstree/
+    - **In conclusion:** JSTree in Vue is the most convenient. But the `regions` list view was written in `blade`, so now it needs to be re-written in `Vue`.
+
+5. Put `Vue.component('regions', require('./components/region/Tree.vue').default)` into `resources/js/app.js` and `<Regions></Regions>` into the `regions` list view. (**Setting up Vue in Laravel**: https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/vue.md)
+
+6. Vue relies on AJAX to get data. So make the necessary api route.
+```php
+Route::group(['namespace' => 'Api'], function () {
+    Route::resource('/region', 'RegionController');
+```
+
+7. `php artisan make:controller Api/RegionController --resource`
+
+8. `npm install vue-jstree`
+
 # Further notes:
 
 https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/notes.md

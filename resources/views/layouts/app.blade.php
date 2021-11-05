@@ -9,10 +9,17 @@
 
     <meta name="base_url" content="{{ url('/') }}">
 
+    @auth
+    @if (isset($token))
+    <!-- API Access Token -->
+    <meta name="token" content="{{ $token }}">
+    @endif
+    @endauth
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ url('/') }}/js/app.js?v={{ rand() }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,6 +28,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ url('/') }}/css/travel_blog.css?v={{ rand() }}" rel="stylesheet">
+
+    @routes
 </head>
 <body>
     <div id="app">

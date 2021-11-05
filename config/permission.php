@@ -167,7 +167,16 @@ return [
             'entry.store',
             'entry.edit',
             'entry.update',
-            'entry.delete',
+            'entry.destroy',
+        ],
+        'region' => [
+            'region.index',
+            'region.show',
+            'region.create',
+            'region.store',
+            'region.edit',
+            'region.update',
+            'region.destroy',
         ],
         'user' => [
             'user.index',
@@ -176,7 +185,7 @@ return [
             'user.store',
             'user.edit',
             'user.update',
-            'user.delete',
+            'user.destroy',
         ],
         'role' => [
             'role.index',
@@ -185,7 +194,7 @@ return [
             'role.store',
             'role.edit',
             'role.update',
-            'role.delete',
+            'role.destroy',
         ],
     ], 
 ];

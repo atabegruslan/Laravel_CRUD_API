@@ -11,6 +11,7 @@ use App\Services\ImageService;
 use Session;
 use App\Notifications\NewEntry;
 use Notification;
+use App\Models\Region;
 
 class EntryController extends Controller
 {
@@ -44,7 +45,17 @@ class EntryController extends Controller
      */
     public function create()
     {
-        return view('entry.create', ['entry' => null, 'feature' => $this->feature]);
+        $regions = Region::all();
+
+        $data = [
+            'entry'             => null, 
+            'regions'           => $regions,
+            'selectedRegions'   => [],
+            'selectedRegionIds' => [],
+            'feature'           => $this->feature, 
+        ];
+
+        return view('entry.create', $data);
     }
 
     /**
@@ -56,6 +67,7 @@ class EntryController extends Controller
     public function store(Request $request, EntryService $entryService)
     {
         $entry = $entryService->create($request);
+        $entry->regions()->sync($request->input('region_ids'));
 
         Notification::send(
             User::all(), 
@@ -78,9 +90,18 @@ class EntryController extends Controller
      */
     public function show($id)
     {
-        $entry = Entry::findOrFail($id);
+        $entry           = Entry::findOrFail($id);
+        $selectedRegions = $entry->regions()->get();
 
-        return view('entry.show', ['entry' => $entry, 'feature' => $this->feature]);
+        $data = [
+            'entry'             => $entry, 
+            'regions'           => [],
+            'selectedRegions'   => $selectedRegions,
+            'selectedRegionIds' => [],
+            'feature'           => $this->feature, 
+        ];
+
+        return view('entry.show', $data);
     }
 
     /**
@@ -91,9 +112,20 @@ class EntryController extends Controller
      */
     public function edit($id)
     {
-        $entry = Entry::findOrFail($id);
+        $entry             = Entry::findOrFail($id);
+        $regions           = Region::all();
+        $selectedRegions   = $entry->regions()->get();
+        $selectedRegionIds = $selectedRegions->pluck('id')->toArray();
 
-        return view('entry.edit', ['entry' => $entry, 'feature' => $this->feature]);
+        $data = [
+            'entry'             => $entry, 
+            'regions'           => $regions,
+            'selectedRegions'   => $selectedRegions,
+            'selectedRegionIds' => $selectedRegionIds,
+            'feature'           => $this->feature, 
+        ];
+
+        return view('entry.edit', $data);
     }
 
     /**
@@ -105,7 +137,8 @@ class EntryController extends Controller
      */
     public function update(Request $request, EntryService $entryService, $id)
     {
-        $entryService->update($request, $id);
+        $entry = $entryService->update($request, $id);
+        $entry->regions()->sync($request->input('region_ids'));
         
         Session::flash('success', 'Entry Updated');
 

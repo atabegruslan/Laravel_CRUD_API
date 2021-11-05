@@ -6,6 +6,10 @@
 	{{ link_to_route('entry.index', 'Places', [], ['class' => 'btn btn-link'] ) }}
 </li>
 
+<li>
+	{{ link_to_route('region.index', 'Regions', [], ['class' => 'btn btn-link'] ) }}
+</li>
+
 @auth
 @if (auth()->user()->hasRole('Admin'))
 <li>
