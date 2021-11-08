@@ -339,52 +339,6 @@ $slider1.slider
 
 ## Notifications
 
-### 3rd party notifications - WebPush
-
-- Documentations
-    - https://laravel.com/docs/5.8/notifications#specifying-delivery-channels
-    - https://github.com/laravel-notification-channels/webpush
-        - https://github.com/laravel-notification-channels/webpush/blob/master/src/WebPushMessage.php
-    - https://laravel-notification-channels.com/webpush/#installation
-- Tutorials
-    - https://github.com/cretueusebiu/laravel-web-push-demo
-    - https://medium.com/@sagarmaheshwary31/push-notifications-with-laravel-and-webpush-446884265aaa <sup>Very helpful</sup>
-- Theory
-    - Web Notification API
-        - https://www.sitepoint.com/introduction-web-notifications-api/
-        - https://www.youtube.com/watch?v=EEhohSp0if4
-        - https://developer.mozilla.org/en-US/docs/Web/API/notification <sup>Documentation</sup>
-        - https://web-push-book.gauntface.com/chapter-05/02-display-a-notification/
-    - Push API
-        - https://www.izooto.com/web-push-notifications-explained
-        - https://developers.google.com/web/updates/2016/01/notification-actions <sup>Actions</sup>
-    - Notification API working in conjunction with Push API
-        - https://www.youtube.com/watch?v=ggUY0Q4f5ok 
-        - https://www.youtube.com/watch?v=HlYFW2zaYQM
-
-1. `composer require laravel-notification-channels/webpush`
-2. User model use `NotificationChannels\WebPush\HasPushSubscriptions;`
-3. `php artisan vendor:publish --provider="NotificationChannels\WebPush\WebPushServiceProvider" --tag="migrations"
-`
-4. `php artisan migrate`
-5. Generate VAPID public and private keys in `.env`: `php artisan webpush:vapid`
-6. See `enable-push` & `service-worker` js files.
-7. See `NotificationController` and its route.
-8. `NewEntry` Notification class:
-
-```php
-public function via($notifiable)
-{
-    return ['mail', 'database', WebPushChannel::class];
-}
-```
-
-and complete `toWebPush` function.
-
-9. `Notification::send($users, new NewEntry);`
-
-![](/Illustrations/push_notifications_anatomy.png)
-
 ### 3rd party notifications - Firebase push notifications
 
 - Tutorials
@@ -410,32 +364,6 @@ and complete `toWebPush` function.
 5. To send: POST to https://fcm.googleapis.com/fcm/send
 6. To do this properly, use notification (https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/app/Notifications/NewEntry.php) and create a custom channel (https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/app/Channels/FirebaseChannel.php). Creating custom channel tutorial is here: https://laravel.com/docs/master/notifications#custom-channels
 7. Handle incoming notification in `messaging.onMessage` and the service worker's `messaging.setBackgroundMessageHandler`
-
-#### HTTPS
-
-When developing FCM on localhost, it helps to have HTTPS
-
-1. Make sure you have `C:\xampp\apache\conf\ssl.crt\server.crt` and `C:\xampp\apache\conf\ssl.key\server.key`.
-
-If you dont have them, run `C:\xampp\apache\makecert.bat` as admin.
-
-2. `xampp\apache\conf\extra\httpd-ssl.conf`
-```
-<VirtualHost _default_:443>
-
-DocumentRoot "C:/xampp/htdocs"
-ServerName www.example.com:443
-
-SSLEngine on
-
-SSLCertificateFile "conf/ssl.crt/server.crt"
-
-SSLCertificateKeyFile "conf/ssl.key/server.key"
-```
-
-- https://gist.github.com/nguyenanhtu/33aa7ffb6c36fdc110ea8624eeb51e69
-- https://florianbrinkmann.com/en/https-virtual-hosts-xampp-4215/
-- https://deanhume.com/testing-service-workers-locally-with-self-signed-certificates/
 
 ## Scheduling tasks
 

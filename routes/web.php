@@ -39,3 +39,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/markAsRead', [NotificationController::class, 'markAsRead']);
+Route::post('/notification', [NotificationController::class, 'store']);

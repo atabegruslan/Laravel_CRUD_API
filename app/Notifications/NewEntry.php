@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\WebPush\WebPushMessage;
+use NotificationChannels\WebPush\WebPushChannel;
 
 class NewEntry extends Notification
 {
@@ -33,7 +35,7 @@ class NewEntry extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', WebPushChannel::class];
     }
 
     /**
@@ -56,6 +58,31 @@ class NewEntry extends Notification
             'url'  => $this->entry_url,
             'name' => $this->name,
         ];
+    }
+
+    public function toWebPush($notifiable, $notification)
+    {
+        $data = [
+            //'entry_id'  => $this->entry_id,
+            'entry_url' => $this->entry_url,
+            'base_url'  => url('/'),
+        ];
+
+        return (new WebPushMessage)
+            ->title('New Travel Blog entry!')
+            ->icon(url('/images/sys/favicon-1.png'))
+            ->body('A new Travel Blog entry about ' . $this->name . ' was added')
+            ->data($data)
+            ->dir('ltr')
+            //->image($this->img_url)
+            ->lang('en-US')
+            ->tag($notification->id)
+            ->action('View entry', 'view')
+            ->action('No thanks', 'close')
+            ->vibrate([100, 50, 100]);
+            // ->renotify()
+            // ->requireInteraction()
+            // ->badge();
     }
 
     /**

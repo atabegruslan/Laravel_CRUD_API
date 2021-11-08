@@ -52,6 +52,7 @@ class Controller extends BaseController
         curl_setopt_array($curl, array( 
             CURLOPT_URL            => url('/') . '/oauth/token',
             CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_CUSTOMREQUEST  => "POST",
             CURLOPT_POSTFIELDS     => $payload,  
         )); 

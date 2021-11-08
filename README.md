@@ -292,6 +292,61 @@ Note: If the mail method doesn't exist, it will default to the `toArray` method.
 7. Create a new entry. Notification entries (one DB entry for each notified user) should appear in the `notifications` DB table. If it works, we then create the interface to show these notifications.
 8. When displaying notifications, the key line of code to use is: `auth()->user()->unreadNotifications`.
 
+### 3rd party notifications - WebPush
+
+- Documentations
+    - https://laravel.com/docs/5.8/notifications#specifying-delivery-channels
+    - https://github.com/laravel-notification-channels/webpush
+        - https://github.com/laravel-notification-channels/webpush/blob/master/src/WebPushMessage.php
+    - https://laravel-notification-channels.com/webpush/#installation
+- Tutorials
+    - https://github.com/cretueusebiu/laravel-web-push-demo
+    - https://medium.com/@sagarmaheshwary31/push-notifications-with-laravel-and-webpush-446884265aaa <sup>Very helpful</sup>
+- Theory
+    - Web Notification API
+        - https://www.sitepoint.com/introduction-web-notifications-api/
+        - https://www.youtube.com/watch?v=EEhohSp0if4
+        - https://developer.mozilla.org/en-US/docs/Web/API/notification <sup>Documentation</sup>
+        - https://web-push-book.gauntface.com/chapter-05/02-display-a-notification/
+    - Push API
+        - https://www.izooto.com/web-push-notifications-explained
+        - https://developers.google.com/web/updates/2016/01/notification-actions <sup>Actions</sup>
+    - Notification API working in conjunction with Push API
+        - https://www.youtube.com/watch?v=ggUY0Q4f5ok 
+        - https://www.youtube.com/watch?v=HlYFW2zaYQM
+
+1. `composer require laravel-notification-channels/webpush`
+2. User model use `NotificationChannels\WebPush\HasPushSubscriptions;`
+3. `php artisan vendor:publish --provider="NotificationChannels\WebPush\WebPushServiceProvider" --tag="migrations"
+`
+4. `php artisan migrate`
+5. Generate VAPID public and private keys in `.env`: `php artisan webpush:vapid` (Prequisite: OpenSSL https://www.xolphin.com/support/OpenSSL/OpenSSL_-_Installation_under_Windows )
+6. See `enable-push` & `service-worker` js files.
+7. See `NotificationController` and its route.
+8. `NewEntry` Notification class:
+
+```php
+public function via($notifiable)
+{
+    return ['mail', 'database', WebPushChannel::class];
+}
+```
+
+and complete `toWebPush` function.
+
+9. `Notification::send($users, new NewEntry);`
+
+![](/Illustrations/push_notifications_anatomy.png)
+
+Tutorial:
+- https://reposhub.com/php/miscellaneous/cretueusebiu-laravel-web-push-demo.html
+
+You will also need: 
+- Enable `gmp` extension in `php.ini`
+- Allow notifications from your site: https://sendpulse.com/knowledge-base/push-notifications/enable-disable-push-notifications-google-chrome
+- If using XAMPP, need HTTPS setup: https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/https.md
+- If using cURL, may need to disable `CURLOPT_SSL_VERIFYPEER` flag: https://stackoverflow.com/questions/17490963/php-curl-returns-false-on-https/27514992
+
 ## Ziggy Routes
 
 https://github.com/tightenco/ziggy

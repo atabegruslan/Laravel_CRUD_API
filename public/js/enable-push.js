@@ -16,7 +16,7 @@ function registerServiceWorker()
                 }
                 else
                 {
-                    navigator.serviceWorker.register(baseUrl + 'js/service-worker.js')
+                    navigator.serviceWorker.register(baseUrl + '/js/service-worker.js')
                         .then(function(newRegistration) {
 
                             newRegistration.update();
@@ -89,7 +89,7 @@ function storePushSubscription(subscription)
 
     const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 
-    fetch(baseUrl + 'notification', {
+    fetch(baseUrl + '/notification', {
         method : 'POST',
         body   : JSON.stringify(subscription),
         headers: {

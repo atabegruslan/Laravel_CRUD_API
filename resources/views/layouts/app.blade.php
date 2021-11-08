@@ -4,17 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <meta name="base_url" content="{{ url('/') }}">
-
     @auth
     @if (isset($token))
     <!-- API Access Token -->
     <meta name="token" content="{{ $token }}">
     @endif
     @endauth
+
+    <meta name="base_url" content="{{ url('/') }}">
+
+    <meta name="vapid_public_key" content="{{ env('VAPID_PUBLIC_KEY') }}">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -101,6 +103,10 @@
         const baseUrl = $("meta[name=base_url]").attr('content');
     </script>
     
+    @auth
+        <script src="{{ url('/') }}/js/enable-push.js?v={{ rand() }}"></script>
+    @endauth
+
     <script src="{{ url('/') }}/js/notification.js?v={{ rand() }}"></script>
 </body>
 </html>
