@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::group(['middleware' => ['auth', 'spatie.permission']], function () {
     Route::resource('/entry', EntryController::class);
     Route::resource('/region', RegionController::class);
@@ -30,13 +34,10 @@ Route::group(['middleware' => ['auth', 'spatie.permission']], function () {
     Route::resource('/user', UserController::class);
     Route::resource('/role', RoleController::class);
 
-    Route::post('/contact', [MiscController::class, 'contact']);
+    Route::post('/contact', [MiscController::class, 'contact'])->name('contact');
     Route::get('/contactform', [MiscController::class, 'contactform'])->name('contactform');
+
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+    
 Route::get('/markAsRead', [NotificationController::class, 'markAsRead']);
 Route::post('/notification', [NotificationController::class, 'store']);

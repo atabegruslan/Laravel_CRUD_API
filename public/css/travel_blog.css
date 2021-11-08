@@ -106,3 +106,21 @@ button#sync_tree {
     margin: 30px;
     font-size: 16px;
 }
+
+.nav-item {
+    margin-right: 5px;
+}
+#autosuggest {
+    width: 96%;
+    margin: 2%;
+}
+button#submitComment {
+    margin: 5%;
+}
+.form-inline input,
+.form-inline button {
+    margin-right: 5px;
+}
+p.region {
+    margin: 0;
+}

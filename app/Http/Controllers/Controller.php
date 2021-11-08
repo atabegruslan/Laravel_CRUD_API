@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class Controller extends BaseController
 {
@@ -39,32 +40,23 @@ class Controller extends BaseController
             ->first()
             ->secret;
 
-        $curl = curl_init(); 
+        $client = new Client(['verify' => false ]);
 
-        $payload = [    
-            'client_id'     => $clientId, 
-            'client_secret' => $clientSecret, 
-            'grant_type'    => 'password', 
-            'username'      => 'ruslanaliyev1849@gmail.com', 
-            'password'      => '12345678', 
-        ];  
+        $response = $client->request('POST', url('/') . '/oauth/token', [
+            'form_params' => [
+                'client_id'     => $clientId, 
+                'client_secret' => $clientSecret, 
+                'grant_type'    => 'password', 
+                'username'      => env('ADMIN_EMAIL'), 
+                'password'      => env('ADMIN_PASSWORD'), 
+            ]
+        ]);
 
-        curl_setopt_array($curl, array( 
-            CURLOPT_URL            => url('/') . '/oauth/token',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_CUSTOMREQUEST  => "POST",
-            CURLOPT_POSTFIELDS     => $payload,  
-        )); 
+        $results = json_decode($response->getBody()->getContents());
 
-        $response = curl_exec($curl);
-        $response = json_decode($response);   
-
-        curl_close($curl);
-
-        if (!isset($response->error))
+        if (!isset($results->error))
         {
-            return $response->access_token;
+            return $results->access_token;
         }
         else
         {

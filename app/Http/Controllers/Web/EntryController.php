@@ -72,8 +72,10 @@ class EntryController extends Controller
         Notification::send(
             User::all(), 
             new NewEntry([
+                'entry_id'  => $entry->id,
                 'entry_url' => url("/$this->feature/" . $entry->id), 
                 'name'      => $entry->place,
+                'img_url'   => $entry->img_url,
             ])
         );
 

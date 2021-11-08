@@ -15,6 +15,8 @@ class NewEntry extends Notification
 
     protected $entry_url;
     protected $name;
+    protected $entry_id;
+    protected $img_url;
     
     /**
      * Create a new notification instance.
@@ -25,6 +27,8 @@ class NewEntry extends Notification
     {
         $this->entry_url = $notice['entry_url'];
         $this->name      = $notice['name'];
+        $this->entry_id  = $notice['entry_id'];
+        $this->img_url   = $notice['img_url'];
     }
 
     /**
@@ -63,7 +67,7 @@ class NewEntry extends Notification
     public function toWebPush($notifiable, $notification)
     {
         $data = [
-            //'entry_id'  => $this->entry_id,
+            'entry_id'  => $this->entry_id,
             'entry_url' => $this->entry_url,
             'base_url'  => url('/'),
         ];
@@ -74,7 +78,7 @@ class NewEntry extends Notification
             ->body('A new Travel Blog entry about ' . $this->name . ' was added')
             ->data($data)
             ->dir('ltr')
-            //->image($this->img_url)
+            ->image($this->img_url)
             ->lang('en-US')
             ->tag($notification->id)
             ->action('View entry', 'view')

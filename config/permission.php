@@ -196,5 +196,9 @@ return [
             'role.update',
             'role.destroy',
         ],
+        'contact' => [
+            'contactform',
+            'contact',
+        ],
     ], 
 ];

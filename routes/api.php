@@ -21,9 +21,7 @@ use App\Http\Controllers\Api\UserController;
 Route::group(['as' => 'api.', 'middleware' => ['auth:api', 'devcors']], function () {
     Route::resource('/entry', EntryController::class);
 
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    Route::resource('/user', UserController::class);
     Route::get('user-autosuggest/{name}', [UserController::class, 'autosuggest'])->name('user_autosuggest');
 
     Route::resource('/region', RegionController::class);

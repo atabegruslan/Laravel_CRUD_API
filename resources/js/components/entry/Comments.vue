@@ -4,17 +4,16 @@
 
         <div v-if="isEdit !== null">
 
-            <form class="form-inline" @submit.prevent="createComment">
+            <form id="commentsForm" class="form-inline" @submit.prevent="createComment">
                 <div class="form-group">
-                    <label for="place">Comment:</label>
     				<textarea id="comment" v-model="comment"></textarea>
                 </div>
-                <button class="btn btn-default" type="submit">Submit Comment</button>
             </form>
 
-            <!-- @todo better css -->
             <select id="autosuggest" @change="choseUser" size="5"></select>
             <input type="hidden" id="curr_username">
+
+            <button id="submitComment" form="commentsForm" class="btn btn-primary float-right" type="submit">Submit Comment</button>
 
         </div>
 
@@ -28,7 +27,7 @@
             <tbody>
                 <tr v-for="comment in comments" v-bind:key="comment.id">
                     <td>
-                        <a :href="link_route(baseUrl, comment.commentor_id)">{{ comment.commentor.name }}</a>
+                        <p><a :href="link_route(baseUrl, comment.commentor_id)">{{ comment.commentor.name }}</a></p>
                     </td>
                     <td>
                         <p v-html="comment.contents">{{ comment.contents }}</p>

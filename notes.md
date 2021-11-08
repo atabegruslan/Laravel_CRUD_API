@@ -1,17 +1,5 @@
 # Notes
 
-## Eloquent ORM
-
-ORM is slower. But easier when changing DB, eg from MySQL to PostgreSQL
-
-- https://stackoverflow.com/questions/38391710/laravel-eloquent-vs-query-builder-why-use-eloquent-to-decrease-performance
-
-### N+1 problem 
-
-EG: Post with many Comments. It's bad to retrieve the POST from the DB, then retrieve its Comments from the DB one at a time. Overcome this in Laravel by using the `with` function.
-
-- https://github.com/atabegruslan/Others/blob/master/DB/db.md#eager-vs-lazy-load
-
 ## Social Login (Socialite)
 
 ### Register
@@ -299,37 +287,13 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']], function () {
 });
 ```
 
-Then complete the store method, like in: https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/app/Http/Controllers/Web/SocialController.php
+Then complete the store method, like in: https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Http/Controllers/Web/SocialController.php
 
 ### Useful tutorials:
 
 - https://github.com/laravel/socialite
 - https://www.youtube.com/watch?v=D3oLLz8bFp0
 - http://devartisans.com/articles/complete-laravel5-socialite-tuorial
-
-
-## Custom Carousel on Welcome Page
-
-Selects a sample of content images for display
-
-Include my custom written js and css: `/js/ruslan_slider.js` and `/css/ruslan_slider.css`.
-
-Also include: `hammer.js` and this jQuery: `http://code.jquery.com/jquery-latest.min.js`
-
-```html
-<div class="slides-holder">
-    <div class="slider"></div>
-</div>
-```
-
-```js
-$slider1.slider
-({
-    title: "Title", //carousel's title
-    fade: 500, // fade transition time
-    pictures: (array of pictures) // eg ["path/to/image/img1.png", "path/to/image/img2.png", ...]
-});     
-```
 
 ## Events (Hooks)
 
@@ -358,11 +322,11 @@ $slider1.slider
     - https://www.youtube.com/playlist?list=PLk7v1Z2rk4hjxP_CHAhjXQN3zrcEhluF_  <sup>Android</sup>
 
 1. Create a project and web app in https://console.firebase.google.com/ . Get the Firebase config credentials. Get the `public/manifest.json` too and include it in the HTML link tag.
-2. See https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/public/js/enable-firebase-push.js and https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/public/js/firebase-service-worker.js.
+2. See https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/public/js/enable-firebase-push.js and https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/public/js/firebase-service-worker.js.
 3. Run the `create_fcm_tokens_table` migration script.
 4. Make the `notification/firebase` API route handle it in the backend controller and DB.
 5. To send: POST to https://fcm.googleapis.com/fcm/send
-6. To do this properly, use notification (https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/app/Notifications/NewEntry.php) and create a custom channel (https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/app/Channels/FirebaseChannel.php). Creating custom channel tutorial is here: https://laravel.com/docs/master/notifications#custom-channels
+6. To do this properly, use notification (https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Notifications/NewEntry.php) and create a custom channel (https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Channels/FirebaseChannel.php). Creating custom channel tutorial is here: https://laravel.com/docs/master/notifications#custom-channels
 7. Handle incoming notification in `messaging.onMessage` and the service worker's `messaging.setBackgroundMessageHandler`
 
 ## Scheduling tasks
@@ -378,6 +342,58 @@ $slider1.slider
 4. When testing in console: `php artisan minutely:demonotice`. When put on server: `php artisan schedule:run`. `schedule:run` actually calls `minutely:demonotice` (and whatever other tasks are there). If you run them from console, they will run immediately. But on the server, the latter will run to schedule.
 5. Do ONE minutely cronjob on the server for Laravel, and let Laravel's Scheduler handle the rest of its jobs. On linux, do the cron like this: `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`. On Windows, use Task Scheduler like this: https://quantizd.com/how-to-use-laravel-task-scheduler-on-windows-10/
 
+## Helper
+
+### Method 1
+
+1. Make `app/XxxHelper.php`
+```php
+use ...\...;
+
+if (! function_exists('helperFunction')) {
+    function helperFunction() 
+    {
+
+    }
+}
+```
+
+2. `composer.json`
+```
+"autoload": {
+    "files": [
+        "app/XxxHelper.php"
+    ],
+```
+
+3. `composer dump-autoload`
+
+### Method 2
+
+1. Make `app/Helpers/XxxHelper.php`
+```php
+namespace App\Helpers;
+
+use ...\...;
+
+class XxxHelper
+{
+    public static function helperFunction()
+    {
+
+    }
+}
+```
+
+2. `config/app.php`
+```php
+'aliases' => [
+    'XxxHelper' => App\Helpers\XxxHelper::class,
+]
+```
+
+3. `composer dump-autoload`
+
 ---
 
 # How to filter in view:
@@ -389,10 +405,10 @@ $slider1.slider
 - https://pineco.de/laravel-blade-filters/
 - Unfortunately that library doesn't work in the newest versions of Laravel. But, we can still imitate it:
 
-1. Make provider: `php artisan make:provider BladeFiltersServiceProvider` , https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/app/Providers/BladeFiltersServiceProvider.php
-2. Make service: https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/app/Services/BladeFiltersCompiler.php
-3. Make custom provider: `php artisan make:provider TranslateServiceProvider` , https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/app/Providers/TranslateServiceProvider.php
-4. Register in `config/app.php` : https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/config/app.php#L187-188
+1. Make provider: `php artisan make:provider BladeFiltersServiceProvider` , https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Providers/BladeFiltersServiceProvider.php
+2. Make service: https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Services/BladeFiltersCompiler.php
+3. Make custom provider: `php artisan make:provider TranslateServiceProvider` , https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Providers/TranslateServiceProvider.php
+4. Register in `config/app.php` : https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/config/app.php#L187-188
 5. Use it in Blade: `{{ $blablah | translate:'vn' }}`
 
 ## In Vue
@@ -402,7 +418,7 @@ $slider1.slider
 - https://stackoverflow.com/questions/54744877/vue-filters-for-input-v-model
 - https://scotch.io/tutorials/how-to-create-filters-in-vuejs-with-examples#toc-defining-and-using-filters
 
-1. In `resources\js\app.js` write your filter: https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/blob/master/resources/js/app.js
+1. In `resources\js\app.js` write your filter: https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/resources/js/app.js
 2. In Vue, use it like: `{{ blahblah | to_3dp }}`
 3. run `npm run dev`
 
@@ -415,6 +431,18 @@ Use mixins: https://v1.vuejs.org/guide/mixins.html
 ---
 
 # Notes about Laravel
+
+## Eloquent ORM
+
+ORM is slower. But easier when changing DB, eg from MySQL to PostgreSQL
+
+- https://stackoverflow.com/questions/38391710/laravel-eloquent-vs-query-builder-why-use-eloquent-to-decrease-performance
+
+### N+1 problem 
+
+EG: Post with many Comments. It's bad to retrieve the POST from the DB, then retrieve its Comments from the DB one at a time. Overcome this in Laravel by using the `with` function.
+
+- https://github.com/atabegruslan/Others/blob/master/DB/db.md#eager-vs-lazy-load
 
 ## Service Provider
 
@@ -576,7 +604,7 @@ https://www.itsolutionstuff.com/post/how-to-use-soft-delete-in-laravel-5example.
 
 #### For the view
 
-1. Write your custom pagination component, like: https://github.com/atabegruslan/Travel-Blog-Laravel-5-8/tree/master/resources/js/components/common/Pagination.vue
+1. Write your custom pagination component, like: https://github.com/atabegruslan/Laravel_CRUD_API/tree/master/resources/js/components/common/Pagination.vue
 
 2. In `app.js`
 ```
@@ -613,25 +641,3 @@ Pass the `pagination` object into the view.
 # More notes
 
 https://github.com/Ruslan-Aliyev/laravel_notes/
-
----
-
-# To Do
-
-- Document APIs using Swagger
-    - https://github.com/DarkaOnLine/L5-Swagger
-    - https://www.youtube.com/playlist?list=PLnBvgoOXZNCOiV54qjDOPA9R7DIDazxBA
-    - https://idratherbewriting.com/learnapidoc/pubapis_swagger.html <sup>helpful</sup>
-    - https://swagger.io/blog/api-strategy/difference-between-swagger-and-openapi/ <sup>theory</sup>
-    - https://swagger.io/blog/api-development/swaggerhub-101-ondemand-tutorial/
-    - https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/
-    - https://www.youtube.com/watch?v=xggucT_xl5U
-- Better if notifications are triggered by events (and event listeners)
-- Fix FCM
-    - Notification shouldn't should be send to the same person as many times as the number of users.
-        - https://laravel.com/docs/5.8/notifications#using-the-notifiable-trait <sup>read again</sup>
-        - https://github.com/laravel-notification-channels/webpush/blob/master/src/WebPushChannel.php <sup>imitate</sup>
-            - Maybe more code needed
-                - User model should use Trait `NotificationChannels\WebPush\HasPushSubscriptions`
-                - Add firebase code to `Illuminate\Notifications\RoutesNotifications::routeNotificationFor`
-- Don't put access token into HTML meta tag to assist Axios AJAX requests to protected API routes. Use JS to get token first then access protected routes. Use generators to make code tidier.

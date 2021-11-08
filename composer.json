@@ -7,7 +7,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.4",
         "laravel-notification-channels/webpush": "^5.1",
         "laravel/framework": "^8.54",
         "laravel/passport": "^10.1",

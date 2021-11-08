@@ -28,6 +28,6 @@
 
     {{ Form::token() }}
 
-    {!! Form::submit(!is_null($role) ? 'Update' : 'Create', ['class' => 'btn btn-default']) !!}
+    {!! Form::submit(!is_null($role) ? 'Update' : 'Create', ['class' => 'btn btn-primary']) !!}
     
 {!! Form::close() !!}

@@ -24,7 +24,7 @@
             <td><strong>Regions: </strong></td>
             <td>
                 @foreach($entry->regions as $region)
-                    <p>{{ $region->name }}</p>
+                    <p class="region">{{ $region->name }}</p>
                 @endforeach
             </td>
         </tr>

@@ -18,7 +18,7 @@ The mobile app to this: https://github.com/atabegruslan/Flutter_CRUD_API
 
 ### Get access token
 
-POST `http://ruslan-website.com/laravel5/travel_blog/oauth/token`
+POST `{{domain}}/oauth/token`
 
 | Post Form Data Name | Post Form Data Value |
 | --- | --- |
@@ -33,7 +33,7 @@ Return access token
 
 ### Get user data
 
-GET `http://ruslan-website.com/laravel5/travel_blog/api/user`
+GET `{{domain}}/api/user`
 
 | Header Field Name | Header Field Value |
 | --- | --- |
@@ -44,7 +44,7 @@ Return user data
 
 ### Insert new user
 
-POST `http://ruslan-website.com/laravel5/travel_blog/api/user`
+POST `{{domain}}/api/user`
 
 | Header Field Name | Header Field Value |
 | --- | --- |
@@ -65,7 +65,7 @@ Return OK or Error response
 
 ### Get all entries
 
-GET `http://ruslan-website.com/laravel5/travel_blog/api/entry`
+GET `{{domain}}/api/entry`
 
 | Header Field Name | Header Field Value |
 | --- | --- |
@@ -76,7 +76,7 @@ Return all entries
 
 ### Get one entry
 
-GET `http://ruslan-website.com/laravel5/travel_blog/api/entry/{id}`
+GET `{{domain}}/api/entry/{id}`
 
 | Header Field Name | Header Field Value |
 | --- | --- |
@@ -87,7 +87,7 @@ Return one entry
 
 ### Create entry
 
-POST `http://ruslan-website.com/laravel5/travel_blog/api/entry`
+POST `{{domain}}/api/entry`
 
 | Header Field Name | Header Field Value |
 | --- | --- |
@@ -105,7 +105,7 @@ Return OK or Error response
 
 ### Update entry
 
-POST `http://ruslan-website.com/laravel5/travel_blog/api/entry/{id}`
+POST `{{domain}}/api/entry/{id}`
 
 | Header Field Name | Header Field Value |
 | --- | --- |
@@ -124,7 +124,7 @@ Return OK or Error response
 
 ### Delete entry
 
-POST `http://ruslan-website.com/laravel5/travel_blog/api/entry/{id}`
+POST `{{domain}}/api/entry/{id}`
 
 | Header Field Name | Header Field Value |
 | --- | --- |
@@ -136,6 +136,24 @@ POST `http://ruslan-website.com/laravel5/travel_blog/api/entry/{id}`
 | _method | DELETE |
 
 Return OK or Error response
+
+---
+
+# Setup
+
+```
+git clone https://github.com/atabegruslan/Laravel_CRUD_API.git
+cd Laravel_CRUD_API
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+php artisan passport:install
+php artisan webpush:vapid
+npm install
+npm run dev
+```
 
 ---
 
@@ -345,7 +363,9 @@ You will also need:
 - Enable `gmp` extension in `php.ini`
 - Allow notifications from your site: https://sendpulse.com/knowledge-base/push-notifications/enable-disable-push-notifications-google-chrome
 - If using XAMPP, need HTTPS setup: https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/https.md
-- If using cURL, may need to disable `CURLOPT_SSL_VERIFYPEER` flag: https://stackoverflow.com/questions/17490963/php-curl-returns-false-on-https/27514992
+- If using cURL, may need to disable `CURLOPT_SSL_VERIFYPEER` flag: 
+    - https://stackoverflow.com/questions/17490963/php-curl-returns-false-on-https/27514992
+    - https://github.com/guzzle/guzzle/issues/1935#issuecomment-629548739
 
 ## Ziggy Routes
 

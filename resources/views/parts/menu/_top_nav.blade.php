@@ -1,29 +1,35 @@
 <li class="nav-item">
-	<a class="btn btn-link" href="{{ url('/') }}">Home</a>
-</li>
-
-<li class="nav-item">
+	<div class="btn btn-link">
 	{{ link_to_route('entry.index', 'Places', [], ['class' => 'btn btn-link'] ) }}
+	</div>
 </li>
 
 <li>
+	<div class="btn btn-link">
 	{{ link_to_route('region.index', 'Regions', [], ['class' => 'btn btn-link'] ) }}
+	</div>
 </li>
 
 @auth
 @if (auth()->user()->hasRole('Admin'))
 <li>
+	<div class="btn btn-link">
 	{{ link_to_route('user.index', 'Users', [], ['class' => 'btn btn-link'] ) }}
+	</div>
 </li>
 
 <li>
+	<div class="btn btn-link">
 	{{ link_to_route('role.index', 'Roles', [], ['class' => 'btn btn-link'] ) }}
+	</div>
 </li>
 @endif
 @endauth
 
 <li class="nav-item">
+	<div class="btn btn-link">
 	{{ link_to_route('contactform', 'Contact Us', [], ['class' => 'btn btn-link'] ) }}
+	</div>
 </li>
 
 @auth

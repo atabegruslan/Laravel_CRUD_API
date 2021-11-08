@@ -36,7 +36,7 @@ class MiscController extends Controller
             function($message) use ($data) 
             {
                 $message->from( $data['email'] );
-                $message->to('ruslanaliyev1849@gmail.com')->subject( $data['subject'] );
+                $message->to(env('ADMIN_EMAIL'))->subject( $data['subject'] );
             }
         );
 
