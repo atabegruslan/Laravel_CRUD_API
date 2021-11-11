@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Entry extends Model
+class Entry extends Base
 {
     public $timestamps = true;
     

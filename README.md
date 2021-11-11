@@ -552,6 +552,62 @@ ClassicEditor
 ```
 4. To redisplay your WYSIWYG comments as HTML: `<p v-html="comment.contents">{{ comment.contents }}</p>`
 
+## Events (Hooks)
+
+- https://www.youtube.com/watch?v=e40_eal2DmM
+- https://laravel.com/docs/8.x/events#dispatching-events
+
+1. To setup - Either:
+```
+php artisan make:event NewEntryMade
+php artisan make:listener HandleNewEntry --event=NewEntryMade
+```
+Or: `app\Providers\EventServiceProvider.php`
+```php
+protected $listen = [
+    Registered::class => [
+        SendEmailVerificationNotification::class,
+    ],
+    'App\Events\NewEntryMade' => [
+        'App\Listeners\HandleNewEntry',
+    ],
+];
+```
+and then `php artisan event:generate`
+
+2. To make event from within eg controller
+```php
+event(new \App\Events\NewEntryMade($params));
+```
+
+3. The rest of the code:
+```php
+class NewEntryMade
+{
+    public $params;
+
+    public function __construct($params)
+    {
+        $this->params = $params;
+    }
+```
+
+```php
+class HandleNewEntry
+{
+    public function __construct() {}
+
+    public function handle(\App\Events\NewEntryMade $event)
+    {
+        $params = $event->params;
+        // Do something, eg: saving an Eloquent model
+    }
+```
+
+## Activity log
+
+https://github.com/spatie/laravel-activitylog
+
 # Further notes:
 
 https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/notes.md

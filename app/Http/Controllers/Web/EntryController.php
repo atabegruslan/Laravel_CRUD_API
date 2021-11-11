@@ -9,8 +9,6 @@ use App\Models\User;
 use App\Services\EntryService;
 use App\Services\ImageService;
 use Session;
-use App\Notifications\NewEntry;
-use Notification;
 use App\Models\Region;
 
 class EntryController extends Controller
@@ -68,16 +66,6 @@ class EntryController extends Controller
     {
         $entry = $entryService->create($request);
         $entry->regions()->sync($request->input('region_ids'));
-
-        Notification::send(
-            User::all(), 
-            new NewEntry([
-                'entry_id'  => $entry->id,
-                'entry_url' => url("/$this->feature/" . $entry->id), 
-                'name'      => $entry->place,
-                'img_url'   => $entry->img_url,
-            ])
-        );
 
         Session::flash('success', 'Entry Created');
 

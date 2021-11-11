@@ -107,6 +107,10 @@ Then in your resources/views/what..ever/view.blade.php:
 3. In the JS part, set the token as a part of the header `axios.defaults.headers.common['Authorization'] = 'Bearer ' + document.head.querySelector('meta[name="token"]').content`
 4. In the script part of the Vue view, you can use axios to make requests to token-protected routes.
 
+## Globally available functions and constants
+
+Use mixins: https://v1.vuejs.org/guide/mixins.html
+
 ## Vue Forms
 
 - https://www.youtube.com/watch?v=XZF71ij463Y

@@ -295,12 +295,6 @@ Then complete the store method, like in: https://github.com/atabegruslan/Laravel
 - https://www.youtube.com/watch?v=D3oLLz8bFp0
 - http://devartisans.com/articles/complete-laravel5-socialite-tuorial
 
-## Events (Hooks)
-
-- https://www.youtube.com/watch?v=e40_eal2DmM
-- https://laravel.com/docs/5.8/events#dispatching-events
-- `php artisan event:generate`
-
 ## Notifications
 
 ### 3rd party notifications - Firebase push notifications
@@ -329,9 +323,70 @@ Then complete the store method, like in: https://github.com/atabegruslan/Laravel
 6. To do this properly, use notification (https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Notifications/NewEntry.php) and create a custom channel (https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Channels/FirebaseChannel.php). Creating custom channel tutorial is here: https://laravel.com/docs/master/notifications#custom-channels
 7. Handle incoming notification in `messaging.onMessage` and the service worker's `messaging.setBackgroundMessageHandler`
 
+# Notes about Laravel
+
+## Eloquent ORM
+
+ORM is slower. But easier when changing DB, eg from MySQL to PostgreSQL
+
+- https://stackoverflow.com/questions/38391710/laravel-eloquent-vs-query-builder-why-use-eloquent-to-decrease-performance
+
+### N+1 problem 
+
+EG: Post with many Comments. It's bad to retrieve the POST from the DB, then retrieve its Comments from the DB one at a time. Overcome this in Laravel by using the `with` function.
+
+- https://github.com/atabegruslan/Others/blob/master/DB/db.md#eager-vs-lazy-load
+
+## Service Provider
+
+![](/Illustrations/servicecontainer1.jpg)
+
+![](/Illustrations/servicecontainer2.png)
+
+- https://code.tutsplus.com/tutorials/how-to-register-use-laravel-service-providers--cms-28966
+- Then watch these tutorials:
+    - https://www.youtube.com/watch?v=urycXvTEnF8&t=1m
+    - https://www.youtube.com/watch?v=GqVdt6OWN-Y&list=PL_HVsP_TO8z7aeylCMe64BIx3VEfvPdn&index=34
+- Then watch these tutorials:
+    - https://www.youtube.com/watch?v=pIWDFVWQXMQ&list=PL_HVsP_TO8z7aey-lCMe64BIx3VEfvPdn&index=33&t=19m35s
+    - https://www.youtube.com/watch?v=hy0oieokjtQ&list=PL_HVsP_TO8z7aey-lCMe64BIx3VEfvPdn&index=35
+    - https://laravel.com/docs/8.x/container
+        - https://laravel.com/docs/4.2/ioc
+    - https://medium0.com/@NahidulHasan/laravel-ioc-container-why-we-need-it-and-how-it-works-a603d4cef10f
+
+### Advantages
+
+Better dependency management
+- https://christoph-rumpel.com/2019/8/4-ways-the-laravel-service-container-helps-us-managing-our-dependencies
+
+
+## Lifecycle
+
+- https://laravel.com/docs/8.x/lifecycle#first-steps
+    - https://laravel.com/docs/4.2/lifecycle#request-lifecycle (Summary subsection)
+    
+## Architectural Patterns
+
+Laravel best fits the ADR pattern.
+
+![](/Illustrations/patterns.png)
+
+## Clear cache
+
+- https://tecadmin.net/clear-cache-laravel-5/
+- On top of the above `php artisan config:cache` is also an useful command
+
+## Upload to server
+
+Methods:
+
+1. Upload `public` folder into server's `public_html` folder. Upload the rest to another folder outside of the server's `public_html` folder. In `public/index.php` rectify all relevant paths. Import .sql to server's database. Refactor database-name, username & password in the `.env` file.
+2.  Load the entire folder as it is. To rid the `/public/` segment of the URL, put the following into the root folder's `.htaccess`: https://infyom.com/blog/how-to-remove-public-path-from-url-in-laravel-application
+3. To rid the `/public/` by: https://www.devopsschool.com/blog/laravel-remove-public-from-url-using-htaccess/
+
 ## Scheduling tasks
 
-- https://laravel.com/docs/5.8/scheduling
+- https://laravel.com/docs/8.x/scheduling
 - https://www.youtube.com/watch?v=fUqrE9ZBH_Q
 - ReactPHP Loop: https://freek.dev/1689-a-package-to-run-the-laravel-scheduler-without-relying-on-cron
 - https://www.positronx.io/laravel-cron-job-task-scheduling-tutorial-with-example/
@@ -394,11 +449,9 @@ class XxxHelper
 
 3. `composer dump-autoload`
 
----
+## Filter in view:
 
-# How to filter in view:
-
-## In Blade
+### In Blade
 
 - https://codecourse.com/watch/filtering-in-laravel-blade  
 
@@ -411,7 +464,7 @@ class XxxHelper
 4. Register in `config/app.php` : https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/config/app.php#L187-188
 5. Use it in Blade: `{{ $blablah | translate:'vn' }}`
 
-## In Vue
+### In Vue
 
 - https://vuejs.org/v2/guide/filters.html
 - https://v1.vuejs.org/guide/custom-filter.html
@@ -422,74 +475,65 @@ class XxxHelper
 2. In Vue, use it like: `{{ blahblah | to_3dp }}`
 3. run `npm run dev`
 
----
+## Pagination (with and without Vue)
 
-# Globally available functions and constants
+### Blade
 
-Use mixins: https://v1.vuejs.org/guide/mixins.html
+#### In controller
+```php
+    public function index()
+    {
+        //$data = WhateverModel::orderBy('updated_at', 'ASC')->get()->all();
+        $data = WhateverModel::orderBy('updated_at', 'ASC')->paginate(10);
 
----
+        return view('whatever.index', ['data' => $data]);
+```
 
-# Notes about Laravel
+#### In view `whatever/index.blade.php`
+```
+<div class="row" >
+    <div id="paginate">
+        {{ $data->links() }}
+    </div>
+</div>
 
-## Eloquent ORM
+```
 
-ORM is slower. But easier when changing DB, eg from MySQL to PostgreSQL
+### Vue
 
-- https://stackoverflow.com/questions/38391710/laravel-eloquent-vs-query-builder-why-use-eloquent-to-decrease-performance
+#### For the view
 
-### N+1 problem 
+1. Write your custom pagination component, like: https://github.com/atabegruslan/Laravel_CRUD_API/tree/master/resources/js/components/common/Pagination.vue
 
-EG: Post with many Comments. It's bad to retrieve the POST from the DB, then retrieve its Comments from the DB one at a time. Overcome this in Laravel by using the `with` function.
+2. In `app.js`
+```
+import VuePagination from './components/common/Pagination';
+Vue.component('vue-pagination', VuePagination);
+```
 
-- https://github.com/atabegruslan/Others/blob/master/DB/db.md#eager-vs-lazy-load
+3. Use it `<vue-pagination :pagination="pagination" @paginate="getItems()" />` where `pagination` is
+```
+{
+    "current_page" :1,
+    "from"         :1,
+    "last_page"    :1,
+    "per_page"     :20,
+    "to"           :2,
+    "total"        :2
+}
+```
 
-## Service Provider
+#### In API controller
 
-![](/Illustrations/servicecontainer1.jpg)
+Pass the `pagination` object into the view.
 
-![](/Illustrations/servicecontainer2.png)
+#### Or you can use other's libraries
 
-- https://code.tutsplus.com/tutorials/how-to-register-use-laravel-service-providers--cms-28966
-- Then watch these tutorials:
-    - https://www.youtube.com/watch?v=urycXvTEnF8&t=1m
-    - https://www.youtube.com/watch?v=GqVdt6OWN-Y&list=PL_HVsP_TO8z7aeylCMe64BIx3VEfvPdn&index=34
-- Then watch these tutorials:
-    - https://www.youtube.com/watch?v=pIWDFVWQXMQ&list=PL_HVsP_TO8z7aey-lCMe64BIx3VEfvPdn&index=33&t=19m35s
-    - https://www.youtube.com/watch?v=hy0oieokjtQ&list=PL_HVsP_TO8z7aey-lCMe64BIx3VEfvPdn&index=35
-    - https://laravel.com/docs/8.x/container
-        - https://laravel.com/docs/4.2/ioc
-    - https://medium0.com/@NahidulHasan/laravel-ioc-container-why-we-need-it-and-how-it-works-a603d4cef10f
-
-### Advantages
-
-Better dependency management
-- https://christoph-rumpel.com/2019/8/4-ways-the-laravel-service-container-helps-us-managing-our-dependencies
-
-
-## Lifecycle
-
-- https://laravel.com/docs/8.x/lifecycle#first-steps
-    - https://laravel.com/docs/4.2/lifecycle#request-lifecycle (Summary subsection)
-    
-## Architectural Patterns
-
-Laravel best fits the ADR pattern.
-
-![](/Illustrations/patterns.png)
-
-## Clear cache
-
-- https://tecadmin.net/clear-cache-laravel-5/
-- On top of the above `php artisan config:cache` is also an useful command
-
-## Upload to server
-
-Methods:
-
-1. Upload `public` folder into server's `public_html` folder. Upload the rest to another folder outside of the server's `public_html` folder. In `public/index.php` rectify all relevant paths. Import .sql to server's database. Refactor database-name, username & password in the `.env` file.
-2.  Load the entire folder as it is. To rid the `/public/` segment of the URL, put the following into the root folder's `.htaccess`: https://infyom.com/blog/how-to-remove-public-path-from-url-in-laravel-application
-3. To rid the `/public/` by: https://www.devopsschool.com/blog/laravel-remove-public-from-url-using-htaccess/
+- https://bootstrap-vue.js.org/docs/components/pagination/
+- https://www.npmjs.com/package/vuejs-paginate
+- https://vuejsexamples.com/tag/pagination/
+- https://github.com/gilbitron/laravel-vue-pagination/blob/master/README.md
+- https://github.com/matfish2/vue-pagination-2/blob/master/README.md
 
 ## Different ways of writting things
 
@@ -576,68 +620,8 @@ You can see that `Illuminate\Database\Eloquent\Model.php::performDeleteOnModel()
 
 https://www.itsolutionstuff.com/post/how-to-use-soft-delete-in-laravel-5example.html
 
-## Pagination (with and without Vue)
-
-### Blade
-
-#### In controller
-```php
-    public function index()
-    {
-        //$data = WhateverModel::orderBy('updated_at', 'ASC')->get()->all();
-        $data = WhateverModel::orderBy('updated_at', 'ASC')->paginate(10);
-
-        return view('whatever.index', ['data' => $data]);
-```
-
-#### In view `whatever/index.blade.php`
-```
-<div class="row" >
-    <div id="paginate">
-        {{ $data->links() }}
-    </div>
-</div>
-
-```
-
-### Vue
-
-#### For the view
-
-1. Write your custom pagination component, like: https://github.com/atabegruslan/Laravel_CRUD_API/tree/master/resources/js/components/common/Pagination.vue
-
-2. In `app.js`
-```
-import VuePagination from './components/common/Pagination';
-Vue.component('vue-pagination', VuePagination);
-```
-
-3. Use it `<vue-pagination :pagination="pagination" @paginate="getItems()" />` where `pagination` is
-```
-{
-    "current_page" :1,
-    "from"         :1,
-    "last_page"    :1,
-    "per_page"     :20,
-    "to"           :2,
-    "total"        :2
-}
-```
-
-#### In API controller
-
-Pass the `pagination` object into the view.
-
-#### Or you can use other's libraries
-
-- https://bootstrap-vue.js.org/docs/components/pagination/
-- https://www.npmjs.com/package/vuejs-paginate
-- https://vuejsexamples.com/tag/pagination/
-- https://github.com/gilbitron/laravel-vue-pagination/blob/master/README.md
-- https://github.com/matfish2/vue-pagination-2/blob/master/README.md
-
 ---
 
 # More notes
 
-https://github.com/Ruslan-Aliyev/laravel_notes/
+https://github.com/Ruslan-Aliyev/Laravel8_Newest_Notes
