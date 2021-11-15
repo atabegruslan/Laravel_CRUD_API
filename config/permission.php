@@ -196,6 +196,15 @@ return [
             'role.update',
             'role.destroy',
         ],
+        'activity' => [
+            'activity.index',
+            'activity.show',
+            'activity.create',
+            'activity.store',
+            'activity.edit',
+            'activity.update',
+            'activity.destroy',
+        ],
         'contact' => [
             'contactform',
             'contact',

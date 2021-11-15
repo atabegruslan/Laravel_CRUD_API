@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\MiscController;
 use App\Http\Controllers\Web\NotificationController;
+use App\Http\Controllers\Web\ActivityLogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::group(['middleware' => ['auth', 'spatie.permission']], function () {
 
     Route::post('/contact', [MiscController::class, 'contact'])->name('contact');
     Route::get('/contactform', [MiscController::class, 'contactform'])->name('contactform');
+
+    Route::resource('/activity', ActivityLogController::class);
 
 });
     
