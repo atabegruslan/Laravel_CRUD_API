@@ -22,7 +22,11 @@
             @foreach($users as $k => $v)
             <tr>
                 <td>
+                    @if (auth()->user()->can('user.show'))
                     <b>{{ link_to_route('user.show', $v->name, [ $v->id ] ) }}</b>
+                    @else
+                    <b>{{ $v->name }}</b>
+                    @endif
                 </td>
                 <td>{{ $v->email }}</td>
             </tr>

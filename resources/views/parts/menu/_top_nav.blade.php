@@ -1,17 +1,19 @@
+@auth
+@if (auth()->user()->can('entry.index'))
 <li class="nav-item">
 	<div class="btn btn-link">
 	{{ link_to_route('entry.index', 'Places', [], ['class' => 'btn btn-link'] ) }}
 	</div>
 </li>
+@endif
 
+@if (auth()->user()->hasRole('Admin'))
 <li>
 	<div class="btn btn-link">
 	{{ link_to_route('region.index', 'Regions', [], ['class' => 'btn btn-link'] ) }}
 	</div>
 </li>
 
-@auth
-@if (auth()->user()->hasRole('Admin'))
 <li>
 	<div class="btn btn-link">
 	{{ link_to_route('user.index', 'Users', [], ['class' => 'btn btn-link'] ) }}
@@ -23,16 +25,22 @@
 	{{ link_to_route('role.index', 'Roles', [], ['class' => 'btn btn-link'] ) }}
 	</div>
 </li>
-@endif
-@endauth
 
+<li>
+	<div class="btn btn-link">
+	{{ link_to_route('activity.index', 'Activity Logs', [], ['class' => 'btn btn-link'] ) }}
+	</div>
+</li>
+@endif
+
+@if (auth()->user()->can('contactform'))
 <li class="nav-item">
 	<div class="btn btn-link">
 	{{ link_to_route('contactform', 'Contact Us', [], ['class' => 'btn btn-link'] ) }}
 	</div>
 </li>
+@endif
 
-@auth
 <li id="notices">
 	<div class="dropdown">
 

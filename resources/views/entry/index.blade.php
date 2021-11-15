@@ -39,7 +39,11 @@
 	                        <img src="{{ url('/images/') . '/' . $v->img_url }}" class="img-responsive small" alt="{{ $v->place }}">
 	                    </td>
 	                    <td>
+	                    	@if (auth()->user()->can('entry.show'))
 	                    	<b>{{ link_to_route('entry.show', $v->place, [ $v->id ] ) }}</b>
+	                    	@else
+	                    	<b>{{ $v->place }}</b>
+	                    	@endif
 	                    </td>
 	                    <td>{!! $v->comments !!}</td>
 	                    <td>{!! $v->user->name !!}</td>
