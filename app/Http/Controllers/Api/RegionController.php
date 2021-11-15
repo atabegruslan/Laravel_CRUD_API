@@ -33,7 +33,7 @@ class RegionController extends Controller
                 $region->loading   = false;
                 $region->children  = [];
                 $region->region_id = $region->id;
-                $region->parent_id = $region->regionTree->parent_id;
+                $region->parent_id = $region->regionTree ? $region->regionTree->parent_id : 0;
 
                 $linearData[] = (object) $region->getAttributes();
             }
@@ -146,5 +146,11 @@ class RegionController extends Controller
 
         DB::table('region_tree')->truncate();
         DB::table('region_tree')->insert($inputs);
+
+        $oldRegions = Region::pluck('id')->all();
+        $newRegions = array_keys( array_column($inputs, null, 'region_id') );
+        $toDelete   = array_diff($oldRegions, $newRegions);
+
+        Region::whereIn('id', $toDelete)->delete();
     }
 }
