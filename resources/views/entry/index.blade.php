@@ -36,7 +36,7 @@
 	    	    @foreach($entries as $k => $v)
 	    	    	<tr>
 	                    <td>
-	                        <img src="{{ $v->img_url }}" class="img-responsive small" alt="{{ $v->place }}">
+	                        <img src="{{ url('/images/') . '/' . $v->img_url }}" class="img-responsive small" alt="{{ $v->place }}">
 	                    </td>
 	                    <td>
 	                    	<b>{{ link_to_route('entry.show', $v->place, [ $v->id ] ) }}</b>

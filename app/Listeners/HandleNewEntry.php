@@ -35,7 +35,7 @@ class HandleNewEntry
                 'entry_id'  => $event->attributes['id'],
                 'entry_url' => url("/entry/" . $event->attributes['id']), 
                 'name'      => $event->attributes['place'],
-                'img_url'   => $event->attributes['img_url'],
+                'img_url'   => url('/images') . '/' . $event->attributes['img_url'],
             ])
         );
     }

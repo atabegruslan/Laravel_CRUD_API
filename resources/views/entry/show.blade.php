@@ -17,7 +17,7 @@
 	    </div>
 	        
 	    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-	        <img src="{{ $entry->img_url }}" class="img-responsive medium" alt="{{ $entry->place }}">
+	        <img src="{{ url('/images') . '/' . $entry->img_url }}" class="img-responsive medium" alt="{{ $entry->place }}">
 	    </div>
 
         @include('parts/_entry_comments')

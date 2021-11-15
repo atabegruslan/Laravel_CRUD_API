@@ -17,7 +17,7 @@ class ImageService
 
         $this->editImage(env('IMG_RAD'), $src, $dst);
 
-        return url('/images') . '/' . $final_image_name;
+        return $final_image_name;
     }
 
     public function editImage($size, $src, $dest, $quality = 80)
