@@ -333,9 +333,20 @@ ORM is slower. But easier when changing DB, eg from MySQL to PostgreSQL
 
 ### N+1 problem 
 
-EG: Post with many Comments. It's bad to retrieve the POST from the DB, then retrieve its Comments from the DB one at a time. Overcome this in Laravel by using the `with` function.
+By default: lazy load.  
+But lazy load have N + 1 problem.  
+EG: Picture have Metadata. So if you want to retrieve N Pictures and their width: `$picture->metadata->width`, then for each picture another query will be run for metadata. Hence, you'll end up with N + 1 queries (N for Metadata and 1 for Picture).  
+Eager loading reduces this from N+1 to 2:  
+```
+select * from pictures
+select * from metadatas where id in (1, 2, 3, 4, 5, ...)
+```
+Eager loading have 2 functions that we can utilize: `Picture::with('metadata')->get();` or `Picture::all()->load('metadata');`.  
 
-- https://github.com/atabegruslan/Others/blob/master/DB/db.md#eager-vs-lazy-load
+- https://viblo.asia/p/eager-loading-trong-laravel-su-dung-with-hay-load-RnB5p0bG5PG
+- https://laravel.com/docs/5.2/eloquent-relationships#eager-loading
+- https://www.youtube.com/watch?v=bZlvzvGpCEE
+- https://www.youtube.com/watch?v=N0phQbyzF0I
 
 ## Service Provider
 
