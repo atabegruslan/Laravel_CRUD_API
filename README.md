@@ -362,7 +362,7 @@ Tutorial:
 You will also need: 
 - Enable `gmp` extension in `php.ini`
 - Allow notifications from your site: https://sendpulse.com/knowledge-base/push-notifications/enable-disable-push-notifications-google-chrome
-- If using XAMPP, need HTTPS setup: https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/https.md
+- If using XAMPP, need HTTPS setup: https://github.com/atabegruslan/Others/blob/master/Development/xampp.md#https-on-local-xampp
 - If using cURL, may need to disable `CURLOPT_SSL_VERIFYPEER` flag: 
     - https://stackoverflow.com/questions/17490963/php-curl-returns-false-on-https/27514992
     - https://github.com/guzzle/guzzle/issues/1935#issuecomment-629548739
