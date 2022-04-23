@@ -590,6 +590,14 @@ $thisAndPrevious = CrudLog::where('time', '<=', $log['time'])
     ->get();
 ```
 
+## Factory
+
+- https://youtu.be/MHBDUJ51Pqs
+- https://laravel.com/docs/7.x/database-testing
+- States (eg: for generating only users of admin type) https://stackoverflow.com/a/57502690
+- `create` persists to DB, `make` creates 1 instance of model https://stackoverflow.com/a/44119474
+- A model instance is created first, then `afterMaking` closure is called, then the Object is writen into the DB and finally `afterCreating` is called https://stackoverflow.com/q/58953181
+
 ## Migration scripts
 
 - Migration is for database structure.
