@@ -593,6 +593,11 @@ $thisAndPrevious = CrudLog::where('time', '<=', $log['time'])
 ## Factory
 
 - https://youtu.be/MHBDUJ51Pqs
+
+![](/Illustrations/factory1.PNG)
+![](/Illustrations/factory2.PNG)
+![](/Illustrations/factory3.PNG)
+
 - https://laravel.com/docs/7.x/database-testing
 - States (eg: for generating only users of admin type) https://stackoverflow.com/a/57502690
 - `create` persists to DB, `make` creates 1 instance of model https://stackoverflow.com/a/44119474
