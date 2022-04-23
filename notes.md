@@ -595,7 +595,9 @@ $thisAndPrevious = CrudLog::where('time', '<=', $log['time'])
 - https://youtu.be/MHBDUJ51Pqs
 
 ![](/Illustrations/factory1.PNG)
+
 ![](/Illustrations/factory2.PNG)
+
 ![](/Illustrations/factory3.PNG)
 
 - https://laravel.com/docs/7.x/database-testing
