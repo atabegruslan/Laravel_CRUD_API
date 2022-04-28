@@ -235,16 +235,16 @@ It is another way of authenticating APIs in Laravel.
 It produces a long-term token.  
 An example would be Github's Personal Access Token.  
 
-1/ Migrate
+1/ Migrate  
 ![](/Illustrations/sanctum1.PNG)
-2/ Use trait
+2/ Use trait  
 ![](/Illustrations/sanctum2.PNG)
-3/ Protect route either in routes or controller
-![](/Illustrations/sanctum3a.PNG)
+3/ Protect route either in routes or controller  
+![](/Illustrations/sanctum3a.PNG)  
 ![](/Illustrations/sanctum3b.PNG)
-4/ Generate token
+4/ Generate token  
 ![](/Illustrations/sanctum4.PNG)
-5/ Try route
+5/ Try route  
 ![](/Illustrations/sanctum5.PNG)
 
 ## Permissions (Spatie library)
