@@ -236,16 +236,16 @@ It produces a long-term token.
 An example would be Github's Personal Access Token.  
 
 1/ Migrate  
-![](/Illustrations/sanctum1.PNG)
+![](/Illustrations/sanctum1.PNG)  
 2/ Use trait  
-![](/Illustrations/sanctum2.PNG)
+![](/Illustrations/sanctum2.PNG)  
 3/ Protect route either in routes or controller  
 ![](/Illustrations/sanctum3a.PNG)  
-![](/Illustrations/sanctum3b.PNG)
+![](/Illustrations/sanctum3b.PNG)  
 4/ Generate token  
-![](/Illustrations/sanctum4.PNG)
+![](/Illustrations/sanctum4.PNG)  
 5/ Try route  
-![](/Illustrations/sanctum5.PNG)
+![](/Illustrations/sanctum5.PNG)  
 
 ## Permissions (Spatie library)
 
