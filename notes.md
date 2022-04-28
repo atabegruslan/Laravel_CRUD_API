@@ -329,7 +329,9 @@ Then complete the store method, like in: https://github.com/atabegruslan/Laravel
 
 ORM is slower. But easier when changing DB, eg from MySQL to PostgreSQL
 
-- https://stackoverflow.com/questions/38391710/laravel-eloquent-vs-query-builder-why-use-eloquent-to-decrease-performance
+https://stackoverflow.com/questions/38391710/laravel-eloquent-vs-query-builder-why-use-eloquent-to-decrease-performance
+
+![](/Illustrations/Eloquent_Speed.png)
 
 ### N+1 problem 
 
