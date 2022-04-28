@@ -229,6 +229,26 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 Now you must do Entry CRUDs with access token https://github.com/atabegruslan/Laravel_CRUD_API#entries
 
+### Laravel Sanctum
+
+It is another way of authenticating APIs in Laravel.
+
+It produces a long-term token.
+
+An example would be Github's Personal Access Token
+
+![](/Illustrations/sanctum1.PNG)
+
+![](/Illustrations/sanctum2.PNG)
+
+![](/Illustrations/sanctum3a.PNG)
+
+![](/Illustrations/sanctum3b.PNG)
+
+![](/Illustrations/sanctum4.PNG)
+
+![](/Illustrations/sanctum5.PNG)
+
 ## Permissions (Spatie library)
 
 1. `composer require spatie/laravel-permission`
