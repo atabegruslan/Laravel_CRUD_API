@@ -100,6 +100,11 @@ Then in your resources/views/what..ever/view.blade.php:
 @endsection
 ```
 
+## Practical Demo Tutorials
+
+- Blade to Vue: https://www.youtube.com/watch?v=4uVNz9sQn18
+- Nuxt with Laravel: https://www.youtube.com/watch?v=FpwOvxsG8Js
+
 ## How to access protected API routes from Vue view
 
 1. Pass access token from backend to view template, like https://github.com/Ruslan-Aliyev/https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Http/Controllers/Controller.php
