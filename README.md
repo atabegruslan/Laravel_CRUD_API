@@ -282,6 +282,10 @@ auth()->user()->hasRole($roles);
 auth()->user()->can($permission);
 ```
 
+More details:
+- https://laravel-news.com/laravel-gates-policies-guards-explained
+- https://www.youtube.com/watch?v=kZOgH3-0Bko
+
 ## Notifications
 
 - https://developers.google.com/cloud-messaging
