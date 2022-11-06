@@ -645,6 +645,7 @@ $thisAndPrevious = CrudLog::where('time', '<=', $log['time'])
 - https://laravel.com/docs/9.x/mocking
 - https://laravel-news.com/laravel-log-fake-2-0
 - https://www.youtube.com/watch?v=OaHBgJq33Tk
+- https://www.nicesnippets.com/blog/laravel-8-factory-example-tutorial
 
 ## Migration scripts
 
