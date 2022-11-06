@@ -640,6 +640,12 @@ $thisAndPrevious = CrudLog::where('time', '<=', $log['time'])
 - https://joelclermont.com/post/laravel-8-factory-relationships/ (Factory in factory)
 - https://www.codegrepper.com/code-examples/whatever/laravel+factory+relationship (via callbacks)
 
+### To Read
+
+- https://laravel.com/docs/9.x/mocking
+- https://laravel.com/docs/7.x/database-testing
+- https://laravel-news.com/laravel-log-fake-2-0
+
 ## Migration scripts
 
 - Migration is for database structure.
