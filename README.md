@@ -235,6 +235,8 @@ It is another way of authenticating APIs in Laravel.
 It produces a long-term token.  
 An example would be Github's Personal Access Token.  
 
+https://www.twilio.com/blog/build-restful-api-php-laravel-sanctum
+
 1/ Migrate  
 ![](/Illustrations/sanctum1.PNG)  
 2/ Use trait  
