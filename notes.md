@@ -325,15 +325,30 @@ Then complete the store method, like in: https://github.com/atabegruslan/Laravel
 
 # Notes about Laravel
 
-## Eloquent ORM
+## Eloquent ORM or Query Builder (`\DB`)
 
-ORM is slower. But easier when changing DB, eg from MySQL to PostgreSQL
+### Speed vs Changing DB
+
+Eloquent is slower. But easier when changing DB, eg from MySQL to PostgreSQL
 
 https://stackoverflow.com/questions/38391710/laravel-eloquent-vs-query-builder-why-use-eloquent-to-decrease-performance
 
 ![](/Illustrations/Eloquent_Speed.png)
 
-### N+1 problem 
+### Functionalities
+
+Eloquent have more functionalities. (You can code for them in the model file)
+
+### Considerations for N+1 problem
+
+With Query Builder, you can explicitly write queries with considerations for N+1 problem.  
+With Eloquent, you have to use things like `with` to enable considerations for N+1 problem. Eloquent won't do it by itself.  
+
+![image](https://user-images.githubusercontent.com/20809372/200185002-e6b1b4e4-0d74-4ac9-8513-83cc1fc615ce.png)
+
+https://www.youtube.com/watch?v=uVsY_OXRq5o
+
+#### N+1 problem 
 
 By default: lazy load.  
 But lazy load have N + 1 problem.  
@@ -349,6 +364,18 @@ Eager loading have 2 functions that we can utilize: `Picture::with('metadata')->
 - https://laravel.com/docs/5.2/eloquent-relationships#eager-loading
 - https://www.youtube.com/watch?v=bZlvzvGpCEE
 - https://www.youtube.com/watch?v=N0phQbyzF0I
+
+## Better code for DB optimization
+
+1. Add indexes and FKs
+2. Use `->get()` last. So group and order, then take the first n entries, and finally use `->get()`.
+3. Refer to relationship instead of fetching all related entries. So use `$model->relation()` instead of `$model->relation`. Use things like `->count()` after that.
+
+Also:
+- Use magic methods eg `withCount`.
+- Use `with` to avoid N+1 problem.
+
+https://www.youtube.com/watch?v=yAAqAxiaEmg
 
 ## Service Provider
 
