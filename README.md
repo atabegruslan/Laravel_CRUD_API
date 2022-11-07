@@ -201,6 +201,8 @@ Or add this to route
 
 ## Auth (API)
 
+### Passport
+
 ```
 composer require laravel/passport
 php artisan migrate
@@ -287,6 +289,14 @@ auth()->user()->can($permission);
 More details:
 - https://laravel-news.com/laravel-gates-policies-guards-explained
 - https://www.youtube.com/watch?v=kZOgH3-0Bko
+
+
+### Passport vs Sanctum
+
+Sanctum offers both session-based and token-based authentication and is good for single-page application (SPA) authentications. Passport uses JWT authentication as standard but also implements full OAuth 2.0 authorization
+
+- https://laracasts.com/discuss/channels/laravel/difference-between-passport-and-sanctum?page=1&replyId=725445
+- https://blog.logrocket.com/implementing-jwt-authentication-laravel-9
 
 ## Notifications
 
