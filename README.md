@@ -251,6 +251,19 @@ https://www.twilio.com/blog/build-restful-api-php-laravel-sanctum
 5/ Try route  
 ![](/Illustrations/sanctum5.PNG)  
 
+### Passport vs Sanctum
+
+Sanctum offers both session-based and token-based authentication and is good for single-page application (SPA) authentications. Passport uses JWT authentication as standard but also implements full OAuth 2.0 authorization
+
+- https://laracasts.com/discuss/channels/laravel/difference-between-passport-and-sanctum?page=1&replyId=725445
+- https://blog.logrocket.com/implementing-jwt-authentication-laravel-9
+
+Does Laravel use **JWT**?  
+Yes and no. Yes because both Laravel passport and Laravel sanctum uses JWT for authorization and no because the Laravel framework itself has nothing to do with JWT.  
+
+- https://github.com/Ruslan-Aliyev/Laravel8_Newest_Notes#jwt
+    - https://adevait.com/laravel/implementing-jwt-authentication-in-laravel
+
 ## Permissions (Spatie library)
 
 1. `composer require spatie/laravel-permission`
@@ -289,14 +302,6 @@ auth()->user()->can($permission);
 More details:
 - https://laravel-news.com/laravel-gates-policies-guards-explained
 - https://www.youtube.com/watch?v=kZOgH3-0Bko
-
-
-### Passport vs Sanctum
-
-Sanctum offers both session-based and token-based authentication and is good for single-page application (SPA) authentications. Passport uses JWT authentication as standard but also implements full OAuth 2.0 authorization
-
-- https://laracasts.com/discuss/channels/laravel/difference-between-passport-and-sanctum?page=1&replyId=725445
-- https://blog.logrocket.com/implementing-jwt-authentication-laravel-9
 
 ## Notifications
 
