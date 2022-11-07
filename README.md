@@ -264,6 +264,12 @@ Yes and no. Yes because both Laravel passport and Laravel sanctum uses JWT for a
 - https://github.com/Ruslan-Aliyev/Laravel8_Newest_Notes#jwt
     - https://adevait.com/laravel/implementing-jwt-authentication-in-laravel
 
+### Other articles about auth
+
+- Other options: https://laracasts.com/series/laravel-authentication-options
+- https://mattstauffer.com/blog/multiple-authentication-guard-drivers-including-api-in-laravel-5-2/
+- https://pusher.com/tutorials/multiple-authentication-guards-laravel/
+
 ## Permissions (Spatie library)
 
 1. `composer require spatie/laravel-permission`
