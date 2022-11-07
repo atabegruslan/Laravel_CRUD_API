@@ -693,6 +693,13 @@ You can see that `Illuminate\Database\Eloquent\Model.php::performDeleteOnModel()
 
 https://www.itsolutionstuff.com/post/how-to-use-soft-delete-in-laravel-5example.html
 
+## File generating/manipulating libraries
+
+- https://beyondco.de/blog/exporting-laravel-models-to-csv-and-xls
+- https://github.com/PHPOffice/PhpSpreadsheet
+- https://docs.laravel-excel.com/2.1/export/cells.html
+- https://www.itsolutionstuff.com/post/laravel-merge-multiple-pdf-files-exampleexample.html
+
 ---
 
 # More notes
