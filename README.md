@@ -638,6 +638,12 @@ class HandleNewEntry
     }
 ```
 
+### Another relevant tutorial
+
+![image](https://user-images.githubusercontent.com/20809372/200236358-016b7094-1629-4140-be6e-3f97d49f50b8.png)
+
+https://github.com/laravelio/laravel.io/blob/6784d21139499de9fdb19ab2d06deb04ca004d8f/app/Jobs/ApproveArticle.php
+
 ## Activity log
 
 https://github.com/spatie/laravel-activitylog
