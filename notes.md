@@ -399,6 +399,11 @@ https://www.youtube.com/watch?v=yAAqAxiaEmg
 Better dependency management
 - https://christoph-rumpel.com/2019/8/4-ways-the-laravel-service-container-helps-us-managing-our-dependencies
 
+### More articles
+
+- https://www.codementor.io/@decodeweb/laravel-service-providers-explained-in-depth-12uu86s2pq
+- https://barryvanveen.nl/articles/34-laravel-service-provider-examples
+- https://laravel.com/docs/7.x/container#the-make-method
 
 ## Lifecycle
 
