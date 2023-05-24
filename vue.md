@@ -104,6 +104,7 @@ Then in your resources/views/what..ever/view.blade.php:
 
 - Blade to Vue: https://www.youtube.com/watch?v=4uVNz9sQn18
 - Nuxt with Laravel: https://www.youtube.com/watch?v=FpwOvxsG8Js
+- https://www.youtube.com/watch?v=TIaNCuwMtJ0
 
 ## How to access protected API routes from Vue view
 
