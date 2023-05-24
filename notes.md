@@ -379,6 +379,8 @@ Methods:
 2.  Load the entire folder as it is. To rid the `/public/` segment of the URL, put the following into the root folder's `.htaccess`: https://infyom.com/blog/how-to-remove-public-path-from-url-in-laravel-application
 3. To rid the `/public/` by: https://www.devopsschool.com/blog/laravel-remove-public-from-url-using-htaccess/
 
+- https://www.youtube.com/watch?v=UyopFbFRug8
+
 ## Scheduling tasks
 
 - https://laravel.com/docs/8.x/scheduling
