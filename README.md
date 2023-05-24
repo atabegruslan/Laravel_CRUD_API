@@ -244,6 +244,11 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 Now you must do Entry CRUDs with access token https://github.com/atabegruslan/Laravel_CRUD_API#entries
 
+That above was for first-party clients.   
+To do for 3rd-party clients: https://stackoverflow.com/questions/60259684/log-in-on-3rd-party-website-using-laravel-passport
+
+- https://stackoverflow.com/questions/54275082/what-are-the-main-difference-between-personal-access-client-and-password-client/55264203#55264203
+
 ### Laravel Sanctum
 
 Nowadays Sanctum has became Laravel's default.  
