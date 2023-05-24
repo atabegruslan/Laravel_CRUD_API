@@ -1,8 +1,21 @@
 # Blog website | Laravel 8
 
-This is an update to: https://github.com/Ruslan-Aliyev/Laravel_CRUD_API (Laravel 5)
+This is an update to: https://github.com/Ruslan-Aliyev/Laravel_CRUD_API (**Laravel 5**)
 
 The mobile app to this: https://github.com/atabegruslan/Flutter_CRUD_API
+
+## Versions
+
+To check Laravel version:
+- https://benjamincrozat.com/check-laravel-version
+- See in `/vendors/`: `Illuminate\Foundation\Application::VERSION`
+
+Major changes from Laravel 5 to 8:
+- `laravel/ui` has came out in version 5.8 https://github.com/laravel/ui#supported-versions . At this point, you can't use `php artisan make:auth` anymore, instead you need to do: `php artisan ui vue --auth`.
+    - Then in version 8 Jetstream came out https://www.youtube.com/playlist?list=PL8z-YHNIa8wksXALnv_PWPukBAr86pt7n , https://laravel-news.com/jetstream-spatie-permission , https://jetstream.laravel.com/2.x/introduction.html , https://www.youtube.com/watch?v=NiQSNjWKLfU . Laravel Jetstream uses Fortify https://github.com/laravel/fortify#introduction , https://www.youtube.com/playlist?list=PLxFwlLOncxFIbxi2gQCN3SR5e3-WB-4T2 . Fortify is just backend while Jetstream includes frontend.
+        - Followed by Breeze: https://www.youtube.com/watch?v=3Jdy9rfYqN0 , https://www.youtube.com/watch?v=UsyAgb0-_IE , https://www.youtube.com/watch?v=XVxyY_owL_M
+- Sanctum ( which uses https://github.com/firebase/php-jwt )
+- Blade components
 
 # Dummy accounts
 
