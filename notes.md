@@ -704,4 +704,5 @@ https://www.itsolutionstuff.com/post/how-to-use-soft-delete-in-laravel-5example.
 
 # More notes
 
-https://github.com/Ruslan-Aliyev/Laravel8_Newest_Notes
+- https://github.com/Ruslan-Aliyev/Laravel8_Newest_Notes
+- https://github.com/Ruslan-Aliyev/Laravel10_Newest_Notes
