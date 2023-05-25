@@ -168,6 +168,8 @@ npm install
 npm run dev
 ```
 
+`artisan key:generate` serves these purposes: https://stackoverflow.com/questions/38980861/laravels-application-key-what-it-is-and-how-does-it-work/51769783#51769783
+
 ---
 
 # How to make this app
