@@ -12,10 +12,10 @@ To check Laravel version:
 
 Major changes from Laravel 5 to 8:
 - `laravel/ui` has came out in version 5.8 https://github.com/laravel/ui#supported-versions . At this point, you can't use `php artisan make:auth` anymore, instead you need to do: `php artisan ui vue --auth`.
-    - Then in version 8 Jetstream came out https://www.youtube.com/playlist?list=PL8z-YHNIa8wksXALnv_PWPukBAr86pt7n , https://laravel-news.com/jetstream-spatie-permission , https://jetstream.laravel.com/2.x/introduction.html , https://www.youtube.com/watch?v=NiQSNjWKLfU . Laravel Jetstream uses Fortify https://github.com/laravel/fortify#introduction , https://www.youtube.com/playlist?list=PLxFwlLOncxFIbxi2gQCN3SR5e3-WB-4T2 . Fortify is just backend while Jetstream includes frontend.
+    - Then in version 8 Jetstream came out https://www.youtube.com/playlist?list=PL8z-YHNIa8wksXALnv_PWPukBAr86pt7n , https://laravel-news.com/jetstream-spatie-permission , https://jetstream.laravel.com/2.x/introduction.html , https://www.youtube.com/watch?v=NiQSNjWKLfU , https://github.com/laravel/jetstream . Laravel Jetstream uses Fortify https://github.com/laravel/fortify#introduction , https://www.youtube.com/playlist?list=PLxFwlLOncxFIbxi2gQCN3SR5e3-WB-4T2 . Fortify is just backend while Jetstream includes frontend (made from Tailwind with Livewire or Inertia).
         - Followed by Breeze: https://www.youtube.com/watch?v=3Jdy9rfYqN0 , https://www.youtube.com/watch?v=UsyAgb0-_IE , https://www.youtube.com/watch?v=XVxyY_owL_M
 - Sanctum ( which uses https://github.com/firebase/php-jwt )
-- Blade components
+- Blade components: https://dev.to/ericchapman/laravel-blade-components-5c9c
 
 # Dummy accounts
 
