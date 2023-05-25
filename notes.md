@@ -677,6 +677,10 @@ Document APIs using Swagger:
 
 All the documentation libraries involves annotating the controller functions
 
+## Security issues
+
+- https://www.youtube.com/watch?v=dWVTfY6cMBs
+
 ---
 
 # More notes
