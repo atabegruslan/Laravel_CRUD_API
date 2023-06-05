@@ -652,6 +652,35 @@ https://www.itsolutionstuff.com/post/how-to-use-soft-delete-in-laravel-5example.
 - https://docs.laravel-excel.com/2.1/export/cells.html
 - https://www.itsolutionstuff.com/post/laravel-merge-multiple-pdf-files-exampleexample.html
 
+## Documentation
+
+Here are a few libraries:
+- https://www.youtube.com/watch?v=gp-_kcblYGA
+- https://www.youtube.com/watch?v=zky95P5ytic
+- https://www.youtube.com/watch?v=PjwGI8c2IfA
+
+### Swagger/OpenAPI
+
+Nowadays, Swagger and OpenAPI can be loosely spoken about interchangably. But to be more exact, OpenAPI refers more to the standard, while Swagger refers more to the software tool for making documentation.
+
+- https://www.youtube.com/watch?v=2pyUYJ4NiMI
+- https://www.youtube.com/watch?v=87ZFvJ7_-n0
+
+Document APIs using Swagger:
+- https://github.com/DarkaOnLine/L5-Swagger
+- https://www.youtube.com/playlist?list=PLnBvgoOXZNCOiV54qjDOPA9R7DIDazxBA
+- https://idratherbewriting.com/learnapidoc/pubapis_swagger.html <sup>helpful</sup>
+- https://swagger.io/blog/api-strategy/difference-between-swagger-and-openapi/ <sup>theory</sup>
+- https://swagger.io/blog/api-development/swaggerhub-101-ondemand-tutorial/
+- https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/
+- https://www.youtube.com/watch?v=xggucT_xl5U
+
+All the documentation libraries involves annotating the controller functions
+
+## Security issues
+
+- https://www.youtube.com/watch?v=dWVTfY6cMBs
+
 ---
 
 # More notes
