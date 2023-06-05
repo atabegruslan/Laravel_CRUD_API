@@ -364,7 +364,7 @@ Better dependency management
 
 Laravel best fits the ADR pattern.
 
-![](/Illustrations/patterns.png)
+![](https://raw.githubusercontent.com/atabegruslan/Others/master/Illustrations/Patterns/MVC_MVP_MVVM_ADR.png)
 
 ## Clear cache
 
