@@ -674,8 +674,11 @@ Document APIs using Swagger:
 - https://swagger.io/blog/api-development/swaggerhub-101-ondemand-tutorial/
 - https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/
 - https://www.youtube.com/watch?v=xggucT_xl5U
+- https://youtu.be/q1UttpUXB3s?si=MG0hjlazaKT_bRZo
 
 All the documentation libraries involves annotating the controller functions
+
+An actual working example of Swagger in Laravel: https://github.com/Ruslan-Aliyev/laravel-swagger
 
 ## Security issues
 
