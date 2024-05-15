@@ -249,6 +249,9 @@ Now you must do Entry CRUDs with access token https://github.com/atabegruslan/La
 That above was for first-party clients.   
 To do for 3rd-party clients: https://stackoverflow.com/questions/60259684/log-in-on-3rd-party-website-using-laravel-passport
 
+Note: After you run `php artisan passport:install` and look inside the `oauth_clients` table, you will see 2 rows: `Laravel Personal Access Client` & `Laravel Password Grant Client`. 
+- Personal Access Clients are for 3rd-party clients.
+- Password Grant Clients are for 1st-party clients.
 - https://stackoverflow.com/questions/54275082/what-are-the-main-difference-between-personal-access-client-and-password-client/55264203#55264203
 
 ### Laravel Sanctum
@@ -370,6 +373,7 @@ Tutorials:
 - https://laravel-news.com/using-sanctum-to-authenticate-a-react-spa
 - https://www.youtube.com/watch?v=2zKoS8GsKK8
 - https://www.youtube.com/watch?v=eeMtmkDZ72Q
+- https://www.youtube.com/watch?v=TzAJfjCn7Ks
 
 ### Passport vs Sanctum
 
