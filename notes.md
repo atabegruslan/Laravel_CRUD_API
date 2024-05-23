@@ -323,6 +323,20 @@ Then complete the store method, like in: https://github.com/atabegruslan/Laravel
 6. To do this properly, use notification (https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Notifications/NewEntry.php) and create a custom channel (https://github.com/atabegruslan/Laravel_CRUD_API/blob/master/app/Channels/FirebaseChannel.php). Creating custom channel tutorial is here: https://laravel.com/docs/master/notifications#custom-channels
 7. Handle incoming notification in `messaging.onMessage` and the service worker's `messaging.setBackgroundMessageHandler`
 
+Note: There are some confusing vocabularies. We are using service workers here.
+
+|              | Service Workers  | Web Workers  | Worker Threads   | Worklets     |
+|--------------|------------------|--------------|------------------|--------------|
+|              |                  | In browsers  | In NodeJS        | Custom animations & effects |
+| Instances    | One for all tabs | Many per tab |                  |              |
+| Lifespan     | Independent      | Same as tab  |                  |              |
+| Intended use | Offline support  | Parallelism  |                  |              |
+
+- https://stackoverflow.com/questions/38632723/what-can-service-workers-do-that-web-workers-cannot
+- https://stackoverflow.com/questions/60268604/whats-the-difference-between-web-workers-and-worker-threads
+- https://youtu.be/-JE8P2TiJEg?si=TBCuiJa9p4RDGi25
+- https://dev.to/bharat5604/web-worker-service-worker-and-worklets-a-comprehensive-guide-1f64
+
 # Notes about Laravel
 
 ## Service Provider
